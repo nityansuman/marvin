@@ -1,0 +1,77 @@
+﻿<html lang="en">
+<head>
+	<title>Automate the examination system</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+	<link rel="stylesheet" type="text/css" href="../static/form-static/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../static/form-static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../static/form-static/vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="../static/form-static/vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="../static/form-static/vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="../static/form-static/css/util.css">
+	<link rel="stylesheet" type="text/css" href="../static/form-static/css/main.css">
+	<link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body class="body2">
+	<div class="head-space">
+		<h5>Logged in as.. {{username}}</h5>
+	</div>
+	<div class="contact1" style="box-shadow: 5px 8px 32px rgb(255, 94, 0);">
+		<div class="contact1-pic js-tilt" data-tilt>
+			<img src="../static/images/quote2.png" alt="IMG">
+		</div>
+		<form style="color:white" class="contact1-form validate-form" action="/generate_test" method="POST" enctype="multipart/form-data">
+			<div class="wrap-input1 validate-input" data-validate="Subject Name is required">
+				<input autocomplete="off" class="input1" type="text" name="subjectname" id="subjectname" placeholder="Subject Name">
+				<span class="shadow-input1"></span>
+			</div>
+			<div class="wrap-input1 validate-input" data-validate="Topic is required">
+				<input autocomplete="off" class="input1" type="text" name="topicname" id="topicname" placeholder="Topic Name">
+				<span class="shadow-input1"></span>
+			</div>
+			<div class="wrap-input1 validate-input" data-validate="Test file is required">
+				<input type="file" name="file" />
+			</div>
+			<div class="container-contact1-form-btn">
+				<button class="contact1-form-newbtn">
+					<span>Take Test<i class="" aria-hidden="true"></i></span>
+				</button>
+				<a href="/" class="contact1-form-newbtn">Home</a>
+			</div>
+		</form>
+	</div>
+</body>
+
+	<!-- JavaScript -->
+    <script src="../static/form-static/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="../static/form-static/vendor/bootstrap/js/popper.js"></script>
+    <script src="../static/form-static/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../static/form-static/vendor/select2/select2.min.js"></script>
+    <script src="../static/form-static/vendor/tilt/tilt.jquery.min.js"></script>
+    <script >
+			$('.js-tilt').tilt({
+				scale: 1.1
+			})
+		
+		function formHandler(){
+			// event handler to handle the name field
+			var nameField = document.getElementById("testname");
+			nameField.onfocus = function(){
+				if(nameField.placeholder == "Test Name"){
+					nameField.placeholder = "";
+				}
+			};
+			nameField.onblur = function(){
+				if(nameField.placeholder == ""){
+					nameField.placeholder = "Test Name";
+				}
+			};
+		}
+		// call fucntion after the window has loaded
+		window.onload = function(){
+			formHandler();
+		}
+	</script>
+	<script src="..static/js/main.js"></script>
+</html>
