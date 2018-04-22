@@ -7,16 +7,16 @@ import csv
 from datetime import datetime
 
 
-def back_up_data(uname, subject_name, topic_name, score_obt):
+def back_up_data(uname, subject_name, score_obt):
     # open the database file and save the score
     user_name_list = uname.split(" ")
     uname = "_".join(user_name_list)
-    filepath = "/mnt/d/COLLEGE/DONE/marvin_ai/marvin_ai/static/data/db/" + uname + ".csv"
+    filepath = "/mnt/d/automating-the-examination-system/marvin_ai/static/data/db/user-data-log.csv"
     date = datetime.now().day
     month = datetime.now().month
     year = datetime.now().year
 
-    row = [date, month, year, uname, subject_name, topic_name, score_obt]
+    row = [date, month, year, uname, subject_name, score_obt]
     
     if os.path.isfile(filepath) == True:
         # file exists then append row
@@ -29,7 +29,7 @@ def back_up_data(uname, subject_name, topic_name, score_obt):
         # create a new file and write to it
         fp = open(filepath, mode="w")
         fp_writer = csv.writer(fp)
-        fp_writer.writerow(["DATE", "MONTH", "YEAR", "USERNAME", "SUBJECT_NAME", "TOPIC_NAME" ,"SCORE"])
+        fp_writer.writerow(["DATE", "MONTH", "YEAR", "USERNAME", "SUBJECT_NAME", "SCORE"])
         fp_writer.writerow(row)
 
         fp.close()
