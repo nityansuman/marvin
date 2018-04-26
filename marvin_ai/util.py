@@ -84,7 +84,7 @@ def generate_trivia(filename):
     que_ans_pair = list()
     for lis in questions:
         for que in lis:
-            if que["Anser_key"] > 3:
+            if que["Anser_key"] > 4:
                 que_ans_pair.append(que)
             else:
                 continue
