@@ -13,8 +13,8 @@ from marvin_ai import app
 from marvin_ai.article import Article
 from marvin_ai.subjective_question import generate_subj_question
 from marvin_ai.cosine_similarity import evaluate_subj_answer
-from marvin_ai.util import generate_trivia, get_obj_question, get_sbj_question, back_up_data
-
+from marvin_ai.util import generate_trivia, get_obj_question, get_sbj_question
+from marvin_ai.util import relative_ranking, back_up_data
 # import important libraries
 import pandas as pd
 import numpy as np
@@ -113,7 +113,7 @@ def generate_test():
 
 @ app.route("/output", methods=["GET", "POST"])
 def output():
-    """ give result based on the test taken by the user """
+    # give result based on the test taken by the user
     user_ans = list()
     if global_test_id[0] == "1":
         # get objective test user responses
@@ -169,6 +169,8 @@ def output():
     if back_up_data(username, subjectname, total_score) == True:
         status = "Score Saved!"
 
+    max_score, mean_score, min_score = relative_ranking(subjectname)
+
     # clear the global variables for the next instance
     global_name_list.clear()
     global_answer_list.clear()
@@ -182,6 +184,9 @@ def output():
         show_score=total_score,
         username=username,
         subjectname=subjectname,
-        status=status
+        status=status,
+        max_score=max_score,
+        mean_score=mean_score,
+        min_score=min_score
     )
 # end of the application

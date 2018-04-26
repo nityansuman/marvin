@@ -31,12 +31,17 @@
 		<div class="row">
 			<div class="col result_dec">
 				<center>
-				<span>SCORE : <h5 id="fs" class="h1_beta">{{show_score}} %</h5></span>
+				<span>YOUR SCORE : <h5 id="fs" class="h1_beta">{{show_score}} %</h5></span>
 				</center>
 			</div>
+			{{status}}
 			<div class="vl"></div>
 			<div class="col">
-				{{status}}
+				<span><h3 style="color: aquamarine; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">MAX SCORE : {{max_score}}</h3></span>
+				<br>
+				<span><h4 style="color: orange; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">MEAN SCORE : {{mean_score}}</h4></span>
+				<br>
+				<span><h5 style="color: navy">MIN SCORE : {{min_score}}</h5></span>
 			</div>
 		</div>	
 	</div>

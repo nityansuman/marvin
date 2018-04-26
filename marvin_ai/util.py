@@ -1,4 +1,3 @@
-import matplotlib.pyplot as plt
 from marvin_ai.article import Article
 import numpy as np
 import pandas as pd
@@ -85,8 +84,23 @@ def generate_trivia(filename):
     que_ans_pair = list()
     for lis in questions:
         for que in lis:
-            if que["Anser_key"] > 4:
+            if que["Anser_key"] > 3:
                 que_ans_pair.append(que)
             else:
                 continue
     return que_ans_pair
+
+
+def relative_ranking(subjectname):
+    # load the data from file
+    subjectname = subjectname.upper()
+    df = pd.read_csv("/mnt/d/automating-the-examination-system/marvin_ai/static/data/db/user-data-log.csv", header=0)
+    
+    # get the datframe with a particular subject
+    temp_df = df[df["SUBJECT_NAME"] == subjectname]
+    
+    # find the maximum and minimum marks scored in that subject
+    max_score = max(temp_df["SCORE"])
+    min_score = min(temp_df["SCORE"])
+    mean_score = temp_df["SCORE"].mean()
+    return max_score, mean_score, min_score
