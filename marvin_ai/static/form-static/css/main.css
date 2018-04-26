@@ -6,6 +6,30 @@
   src: url("../fonts/Monoton/Monoton-Regular.ttf")
 }
 
+@font-face{
+  font-family: "Roboto";
+  src: url("../fonts/Roboto_Mono/RobotoMono-Light.ttf")
+}
+@font-face{
+  font-family: "Guci";
+  src: url("../fonts/Gugi/Gugi-Regular.ttf")
+}
+@font-face{
+  font-family: "DancingF";
+  src: url("../fonts/Dancing_Script/DancingScript-Regular.ttf")
+}
+@font-face{
+  font-family: "PressStart";
+  src: url("../fonts/East_Sea_Dokdo/EastSeaDokdo-Regular.ttf")
+}
+
+
+
+.myownfont{
+  font-family: "Guci";
+  font-size: 20px;
+}
+
 .result_dec {
   font-family: "Roboto";
   color: slategray;
@@ -416,6 +440,30 @@ textarea.input1 + .shadow-input1 {
 }
 
 
+.contact1-form-newbtn-home {
+  min-width: 190px;
+  height: 50px;
+  border-radius: 25px;
+  background: rgb(0, 0, 0);
+  font-family: "Roboto";
+  font-size: 15px;
+  line-height: 1.5;
+  color: #fff;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 25px;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
 .contact1-form-newbtn2 {
   min-width: 100px;
   height: 50px;
@@ -483,6 +531,11 @@ textarea.input1 + .shadow-input1 {
 
 .contact1-form-newbtn:hover {
   background: rgb(255, 94, 0);
+  color: black;
+}
+
+.contact1-form-newbtn-home:hover {
+  background:rgb(14, 245, 156);
   color: black;
 }
 

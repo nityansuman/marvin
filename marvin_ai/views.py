@@ -55,22 +55,28 @@ def form():
 
 @app.route("/generate_test", methods=['GET', 'POST'])
 def generate_test():
-    ''' prompt for user to start procedure of test '''
-    # get data from the form in form.html
-    global_answer_list.clear()
-    subject_name = request.form["subjectname"]
-    if subject_name == "":
-        subject_name = "Test Subject"
-
-    global_name_list.append(subject_name)
-
+    # get subject id
+    subject_id = request.form["subject_id"]
+    filename = ""
+    if subject_id == "1":
+        global_name_list.append("Software Testing")
+        filename = "/mnt/d/automating-the-examination-system/software-testing.txt"
+    elif subject_id == "2":
+        global_name_list.append("Databases")
+        filename = "/mnt/d/automating-the-examination-system/dbms.txt"
+    elif subject_id == "3":
+        global_name_list.append("Machine Learning")
+        filename = "/mnt/d/automating-the-examination-system/ml.txt"
+    else:
+        # file containing data to generate test
+        file = request.files["file"]
+        filename = secure_filename(file.filename)
+        file.save(secure_filename(file.filename))
+        global_name_list.append("Sample Test")
+    
+    # get test type id
     test_id = request.form["test_id"]
     global_test_id.append(test_id)
-
-    # file containing data to generate test
-    file = request.files["file"]
-    filename = secure_filename(file.filename)
-    file.save(secure_filename(file.filename))
 
     if test_id == "1":
         # generate word/phrase question
