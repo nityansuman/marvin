@@ -62,10 +62,10 @@ def generate_test():
         global_name_list.append("Software Testing")
         filename = "/mnt/d/automating-the-examination-system/software-testing.txt"
     elif subject_id == "2":
-        global_name_list.append("Databases")
+        global_name_list.append("DBMS")
         filename = "/mnt/d/automating-the-examination-system/dbms.txt"
     elif subject_id == "3":
-        global_name_list.append("Machine Learning")
+        global_name_list.append("ML")
         filename = "/mnt/d/automating-the-examination-system/ml.txt"
     else:
         # file containing data to generate test
@@ -146,30 +146,37 @@ def output():
         x = x.upper()
         default_ans.append(x)
     
+    username = global_name_list[0]
+    subjectname = global_name_list[1]
+    
     # evaluate the user repsonse
     total_score = 0
+    flag = ""
     if global_test_id[0] == "1":
+        flag = "1"
         # evaluate objective answer
         for i in range(len(default_ans)):
             if user_ans[i] == default_ans[i]:
                 total_score += 100
         total_score /= 3
+        total_score = round(total_score, 3)
+        # back up the user details and score for rank analysis
+        status = "Score Not Saved!"
+        if back_up_data(username, subjectname, total_score, "1") == True:
+            status = "Score Saved!"
     elif global_test_id[0] == "2":
+        flag = "2"
         # evaluate subjective answer
         for i in range(len(default_ans)):
             total_score += evaluate_subj_answer(default_ans[i], user_ans[i])
         total_score /= 2
-    
-    total_score = round(total_score, 3)
-    username = global_name_list[0]
-    subjectname = global_name_list[1]
+        total_score = round(total_score, 3)
+        # back up the user details and score for rank analysis
+        status = "Score Not Saved!"
+        if back_up_data(username, subjectname, total_score, "2") == True:
+            status = "Score Saved!"
 
-    # back up the user details and score for rank analysis
-    status = "Score Not Saved!"
-    if back_up_data(username, subjectname, total_score) == True:
-        status = "Score Saved!"
-
-    max_score, mean_score, min_score = relative_ranking(subjectname)
+    max_score, mean_score, min_score = relative_ranking(subjectname, flag)
 
     # clear the global variables for the next instance
     global_name_list.clear()

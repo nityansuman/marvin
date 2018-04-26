@@ -6,16 +6,17 @@ import csv
 from datetime import datetime
 
 
-def back_up_data(uname, subject_name, score_obt):
+def back_up_data(uname, subject_name, score_obt, flag):
     # open the database file and save the score
     user_name_list = uname.split(" ")
     uname = "_".join(user_name_list)
     uname = uname.upper()
 
     subject_name = subject_name.strip(" ").upper()
-
-    filepath = "/mnt/d/automating-the-examination-system/marvin_ai/static/data/db/user-data-log.csv"
-    
+    if flag == "1":
+        filepath = "/mnt/d/automating-the-examination-system/marvin_ai/static/data/db/user-data-log.csv"
+    else:
+        filepath = "/mnt/d/automating-the-examination-system/marvin_ai/static/data/db/user-data-log_2.csv"
     date = datetime.now().day
     month = datetime.now().month
     year = datetime.now().year
@@ -84,17 +85,21 @@ def generate_trivia(filename):
     que_ans_pair = list()
     for lis in questions:
         for que in lis:
-            if que["Anser_key"] > 4:
+            if que["Anser_key"] > 3:
                 que_ans_pair.append(que)
             else:
                 continue
     return que_ans_pair
 
 
-def relative_ranking(subjectname):
+def relative_ranking(subjectname, flag):
     # load the data from file
     subjectname = subjectname.upper()
-    df = pd.read_csv("/mnt/d/automating-the-examination-system/marvin_ai/static/data/db/user-data-log.csv", header=0)
+    
+    if flag == "1":
+        df = pd.read_csv("/mnt/d/automating-the-examination-system/marvin_ai/static/data/db/user-data-log.csv", header=0)
+    else:
+        df = pd.read_csv("/mnt/d/automating-the-examination-system/marvin_ai/static/data/db/user-data-log_2.csv", header=0)
     
     # get the datframe with a particular subject
     temp_df = df[df["SUBJECT_NAME"] == subjectname]
