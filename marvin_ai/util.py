@@ -11,7 +11,12 @@ def back_up_data(uname, subject_name, score_obt):
     # open the database file and save the score
     user_name_list = uname.split(" ")
     uname = "_".join(user_name_list)
+    uname = uname.upper()
+
+    subject_name = subject_name.strip(" ").upper()
+
     filepath = "/mnt/d/automating-the-examination-system/marvin_ai/static/data/db/user-data-log.csv"
+    
     date = datetime.now().day
     month = datetime.now().month
     year = datetime.now().year
@@ -37,12 +42,35 @@ def back_up_data(uname, subject_name, score_obt):
     return True
 
 
-def get_a_question(pair):
-    # generate a random number
-    rand_num = np.random.randint(0, len(pair))
-    # get the que and ans to theat corresponding number
-    que = pair[rand_num]["Question"]
-    ans = pair[rand_num]["Answer"]
+def get_obj_question(pair):
+    que = list()
+    ans = list()
+    while len(que) < 3:
+        # generate a random number
+        rand_num = np.random.randint(0, len(pair))
+        # get the que and ans to theat corresponding number
+        new_list_dict = pair[rand_num]
+        if new_list_dict["Question"] not in que:
+            que.append(new_list_dict["Question"])
+            ans.append(new_list_dict["Answer"])
+        else:
+            continue
+    return que, ans
+
+
+def get_sbj_question(pair):
+    que = list()
+    ans = list()
+    while len(que) < 2:
+        # generate a random number
+        rand_num = np.random.randint(0, len(pair))
+        # get the que and ans to theat corresponding number
+        new_list_dict = pair[rand_num]
+        if new_list_dict["Question"] not in que:
+            que.append(new_list_dict["Question"])
+            ans.append(new_list_dict["Answer"])
+        else:
+            continue
     return que, ans
 
 

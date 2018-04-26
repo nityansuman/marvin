@@ -207,13 +207,12 @@ iframe {
 
 .contact2 {
   width: 100%;
-  height: 100%;
-  padding: 15px;
-
+  padding: 0px;
   background: #13547a;
-  /*background: linear-gradient(to top, yellow, #e05c1e);*/
-  background: linear-gradient(to top, #13547a 0%, #80d0c7 100%);
-
+  /*background: linear-gradient(to top, yellow, #e05c1e);
+  background: linear-gradient(to top, #13547a 0%, #80d0c7 50%);
+  background: linear-gradient(to bottom,#80d0c7  50%, #13547a 200%);
+  */
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -475,6 +474,11 @@ textarea.input1 + .shadow-input1 {
   -o-transition: all 0.4s;
   -moz-transition: all 0.4s;
   transition: all 0.4s;
+}
+
+.contact1-form-btn:hover {
+  background: rgb(255, 94, 0);
+  color: black;
 }
 
 .contact1-form-newbtn:hover {

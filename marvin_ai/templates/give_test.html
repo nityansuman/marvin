@@ -14,20 +14,24 @@
 	<link rel="stylesheet" href="../static/css/style.css">
 </head>
 <body class="contact2">
-	<h5 style="color: white;">Logged In as .. {{username}}</h5>
+	<h5 style=" color: white; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Logged In as .. {{username}}</h5>
 	<div class="contact1new">
 		<form style="color:white" class="contact1-form validate-form" action="/output" method="POST" enctype="multipart/form-data">
 			<div class="wrap-input1 validate-input" data-validate="">
-				<h4>{{que}}</h4>
-				<h6>{{ans}}</h6>
-				<input autocomplete="off" class="input1" type="text" name="answer1" id="answer1" placeholder="One Word/Phrase Answer">
+				<h4>{{question1}}</h4>
+				<input autocomplete="off" class="input1" type="text" name="answer1" id="answer1" placeholder="One/Two Word Answer">
 				<span class="shadow-input1"></span>
 			</div>
-			<!-- <div class="wrap-input1 validate-input" data-validate="">
+			<div class="wrap-input1 validate-input" data-validate="">
 				<h4>{{question2}}</h4>
-				<input autocomplete="off" class="input1" type="text" name="answer2" id="answer2" placeholder="Short Descriptive Answer">
+				<input autocomplete="off" class="input1" type="text" name="answer2" id="answer2" placeholder="One/Two word Answer">
 				<span class="shadow-input1"></span>
-			</div> -->
+			</div>
+			<div class="wrap-input1 validate-input" data-validate="">
+				<h4>{{question3}}</h4>
+				<input autocomplete="off" class="input1" type="text" name="answer3" id="answer3" placeholder="One/Two word Answe">
+				<span class="shadow-input1"></span>
+			</div>
 			<div class="container-contact1-form-btn">
 				<button class="contact1-form-btn">
 					<span>Submit<i class="" aria-hidden="true"></i></span>
