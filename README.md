@@ -11,22 +11,36 @@ The purpose of this project is to build an automated examination system using ma
 natural language processing and web technologies to provide an inexpensive alternative
 to the current examination system.
 
-| **'Documentation'** |
+
+## Pre-requisites
+    | Flask |
+    | Git |
+    | NLTK |
+    | Python 3.6 |
+
 
 ## To run the project:
 
---> Open terminal.
-
---> Navigate to the root folder of the project.
-
---> Run the following command:
+--> To download the project from github - open a terminal and run the following command:
+```
+    $ git clone https://github.com/nityansuman/automating-the-examination-system.git
+```
+--> Now navigate to the root folder of the project from the same termianl:
+```
+    $ cd automating-the-examination-system
+```
+--> Run the following command to execute the project:
 ``` 
     $ python3 runserver.py
 ```
+--> Once run, it will generate a local url. Copy and paste the url in the web browser.
+--> You are now good to go!
 
 
 ## For more information:
 * [Natural Language Processing](https://nltk.org/book/)
+* [Git](https://git-scm.com/)
+* [Github](https://github.com/)
 * [NLTK](https://nltk.org/)
 * [Flask](http://flask.pocoo.org/)
 * [Web Development](https://w3schoo.com/)
