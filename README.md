@@ -12,11 +12,19 @@ natural language processing and web technologies to provide an inexpensive alter
 to the current examination system.
 
 
-## Pre-requisites
-    | Flask |
+## Prerequisites:
+
+    | Flask 0.12 |
     | Git |
-    | NLTK |
-    | Python 3.6 |
+    | NLTK 3.3 |
+    | Python 3.6.1 - conda installation (recommended)|
+
+## Important Python3 Packages:
+    Numpy
+    Textblob
+    Pandas
+    Flask
+    NLTK - Corpus
 
 
 ## To run the project:
