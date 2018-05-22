@@ -53,7 +53,8 @@ to the current examination system.
 * [Flask](http://flask.pocoo.org/)
 * [Web Development](https://w3schoo.com/)
 * [Text Mining](https://en.wikipedia.org/wiki/Text_mining/)
-
+* [Python3](https://python.org/)
+* [Anacoonda Python Distribution](https://conda.io)
 
 ## License
 [GPL 3.0](LICENSE)
