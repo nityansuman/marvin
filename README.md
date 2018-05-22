@@ -1,4 +1,3 @@
-** marvin_ai **
 # automating-the-examination-system
 
 
@@ -15,12 +14,26 @@ to the current examination system.
 | **'Documentation'** |
 
 ## To run the project:
+
+--> Open terminal.
+
+--> Navigate to the root folder of the project.
+
+--> Run the following command:
+``` 
+    $ python3 runserver.py
 ```
-    --> Open terminal.
-    --> Navigate to the root folder of the project.
-    --> ```shell
-        $python3 runserver.py
-        ,,,
-```
+
+
+## For more information:
+* [Natural Language Processing](https://nltk.org/book/)
+* [NLTK](https://nltk.org/)
+* [Flask](http://flask.pocoo.org/)
+* [Web Development](https://w3schoo.com/)
+* [Text Mining](https://en.wikipedia.org/wiki/Text_mining/)
+
+
+## License
+[GPL 3.0](LICENSE)
 
 
