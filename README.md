@@ -35,7 +35,7 @@ to the current examination system.
 ```
 --> Now navigate to the root folder of the project from the same termianl:
 ```
-    $ cd automating-the-examination-system
+    $ cd automating-the-examination-system/marvin_ai
 ```
 --> Run the following command to execute the project:
 ``` 
