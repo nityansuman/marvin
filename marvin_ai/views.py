@@ -60,13 +60,13 @@ def generate_test():
     filename = ""
     if subject_id == "1":
         global_name_list.append("Software Testing")
-        filename = "/mnt/d/automating-the-examination-system/software-testing.txt"
+        filename = "/Users/nityansuman/github/automating-the-examination-system/software-testing.txt"
     elif subject_id == "2":
         global_name_list.append("DBMS")
-        filename = "/mnt/d/automating-the-examination-system/dbms.txt"
+        filename = "/Users/nityansuman/github/automating-the-examination-system/dbms.txt"
     elif subject_id == "3":
         global_name_list.append("ML")
-        filename = "/mnt/d/automating-the-examination-system/ml.txt"
+        filename = "/Users/nityansuman/automating-the-examination-system/ml.txt"
     else:
         # file containing data to generate test
         file = request.files["file"]

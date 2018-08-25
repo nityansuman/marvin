@@ -14,9 +14,9 @@ def back_up_data(uname, subject_name, score_obt, flag):
 
     subject_name = subject_name.strip(" ").upper()
     if flag == "1":
-        filepath = "/mnt/d/automating-the-examination-system/marvin_ai/static/data/db/user-data-log.csv"
+        filepath = "/Users/nityansuman/github/automating-the-examination-system/marvin_ai/static/data/db/user-data-log.csv"
     else:
-        filepath = "/mnt/d/automating-the-examination-system/marvin_ai/static/data/db/user-data-log_2.csv"
+        filepath = "/Users/nityansuman/github/automating-the-examination-system/marvin_ai/static/data/db/user-data-log_2.csv"
     date = datetime.now().day
     month = datetime.now().month
     year = datetime.now().year
@@ -97,9 +97,9 @@ def relative_ranking(subjectname, flag):
     subjectname = subjectname.upper()
     
     if flag == "1":
-        df = pd.read_csv("/mnt/d/automating-the-examination-system/marvin_ai/static/data/db/user-data-log.csv", header=0)
+        df = pd.read_csv("/Users/nityansuman/github/automating-the-examination-system/marvin_ai/static/data/db/user-data-log.csv", header=0)
     else:
-        df = pd.read_csv("/mnt/d/automating-the-examination-system/marvin_ai/static/data/db/user-data-log_2.csv", header=0)
+        df = pd.read_csv("/Users/nityansuman/github/automating-the-examination-system/marvin_ai/static/data/db/user-data-log_2.csv", header=0)
     
     # get the datframe with a particular subject
     temp_df = df[df["SUBJECT_NAME"] == subjectname]
