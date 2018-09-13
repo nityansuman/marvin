@@ -11,7 +11,7 @@ machine learning, natural language toolkit (NLTK), python environment, flask fra
 and web technologies to provide an inexpensive alternative to the current examination system.
 We implement a model to automatically generate questions with their respective answers and
 assess user responses.
----
+
 
 ## Prerequisites:
 
