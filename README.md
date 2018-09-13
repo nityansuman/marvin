@@ -1,5 +1,4 @@
 # MarvinAI - Automating the Examination System
----
 
 Conducting examination and answer sheet evaluation are hectic testing tools for assessing
 academic achievement, integration of ideas and ability to recall, but are expensive, resource
