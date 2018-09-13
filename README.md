@@ -61,4 +61,3 @@ assess user responses.
 
 ## License
 [GPL 3.0](LICENSE)
----
