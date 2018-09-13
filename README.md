@@ -1,16 +1,17 @@
-# automating-the-examination-system : marvin_ai
+# MarvinAI - Automating the Examination System
+---
 
-
-Conducting examination and answer sheet evaluation are hectic testing tools for assessing academic achievement, 
-integration of ideas and ability to recall, but are expensive, resource and time consuming.
-Manual question generation and evaluation of answer sheet takes up a significant amount of valuable time and
-resource making it an expensive process.
-Automated examination, if proven to match or exceed the reliability of human evaluators,
-will significantly reduce costs and time.
-The purpose of this project is to build an automated examination system using machine learning,
-natural language processing and web technologies to provide an inexpensive alternative
-to the current examination system.
-
+Conducting examination and answer sheet evaluation are hectic testing tools for assessing
+academic achievement, integration of ideas and ability to recall, but are expensive, resource
+and time consuming to generate question and evaluate response manually. Manual evaluating
+of answer sheet takes up a significant amount of instructors' valuable time and hence is an
+expensive process. Also different security concerns regarding paper leakage is one of the other
+challenges to conquer. This project aims to build an automated examination system using
+machine learning, natural language toolkit (NLTK), python environment, flask framework,
+and web technologies to provide an inexpensive alternative to the current examination system.
+We implement a model to automatically generate questions with their respective answers and
+assess user responses.
+---
 
 ## Prerequisites:
 
@@ -18,6 +19,7 @@ to the current examination system.
     | Git |
     | NLTK 3.3 |
     | Python 3.6.1 - conda installation (recommended)|
+---
 
 ## Important Python3 Packages:
     Numpy
@@ -25,7 +27,7 @@ to the current examination system.
     Pandas
     Flask
     NLTK - Corpus
-
+---
 
 ## To run the project:
 
@@ -43,7 +45,7 @@ to the current examination system.
 ```
 --> Once run, it will generate a local url. Copy and paste the url in the web browser.
 --> You are now good to go!
-
+---
 
 ## For more information:
 * [Natural Language Processing](https://nltk.org/book/)
@@ -55,8 +57,8 @@ to the current examination system.
 * [Text Mining](https://en.wikipedia.org/wiki/Text_mining/)
 * [Python3](https://python.org/)
 * [Anacoonda Python Distribution](https://conda.io)
+---
 
 ## License
 [GPL 3.0](LICENSE)
-
-
+---
