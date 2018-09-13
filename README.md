@@ -19,7 +19,6 @@ assess user responses.
     | Git |
     | NLTK 3.3 |
     | Python 3.6.1 - conda installation (recommended)|
----
 
 ## Important Python3 Packages:
     Numpy
@@ -27,7 +26,6 @@ assess user responses.
     Pandas
     Flask
     NLTK - Corpus
----
 
 ## To run the project:
 
@@ -57,7 +55,6 @@ assess user responses.
 * [Text Mining](https://en.wikipedia.org/wiki/Text_mining/)
 * [Python3](https://python.org/)
 * [Anacoonda Python Distribution](https://conda.io)
----
 
 ## License
 [GPL 3.0](LICENSE)
