@@ -31,11 +31,11 @@ to the current examination system.
 
 --> To download the project from github - open a terminal and run the following command:
 ```
-    $ git clone https://github.com/nityansuman/automating-the-examination-system.git
+    $ git clone https://github.com/nityansuman/MarvinAI.git
 ```
 --> Now navigate to the root folder of the project from the same termianl:
 ```
-    $ cd automating-the-examination-system/marvin_ai
+    $ cd MarvinAI/marvin_ai
 ```
 --> Run the following command to execute the project:
 ``` 
