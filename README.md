@@ -16,7 +16,6 @@ assess user responses.
 
 
 ## Prerequisites:
-
     | Flask 0.12 |
     | Git |
     | NLTK 3.3 |
