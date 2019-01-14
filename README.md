@@ -30,6 +30,9 @@ assess user responses.
     NLTK - Corpus
 
 ## Install Prerequisites:
+
+[How to install anaconda python distribution ?](https://docs.anaconda.com/anaconda/install/)
+
 Assuming anaconda for python 3 is installed:
 ```
     $ conda install -c anaconda flask # to install flask
