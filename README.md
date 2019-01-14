@@ -19,7 +19,7 @@ assess user responses.
     | Flask 0.12 |
     | Git |
     | NLTK 3.3 |
-    | Python 3.6.1 - conda installation (recommended)|
+    | Python 3.6.1 - conda installation (Recommended)|
 
 ## Important Python3 Packages:
     Numpy
@@ -27,6 +27,20 @@ assess user responses.
     Pandas
     Flask
     NLTK - Corpus
+
+## Install Prerequisites:
+--> Assuming anaconda for python 3 is installed:
+```
+    $ conda install -c anaconda flask # to install flask
+    $ conda install -c conda-forge textblob $ to install textblolb library
+```
+NLTK, Numpy and Pandas comes pre-installed with anacodna python distribution.
+
+```
+    $ python3
+        >>> import nltk
+        >>> nltk.download("all") # to download nltk corpus
+```
 
 ## To run the project:
 
