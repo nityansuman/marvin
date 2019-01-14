@@ -17,17 +17,12 @@ assess user responses.
 
 ## Prerequisites:
     | Flask 0.12 |
+    | Numpy 0.10 |
+    | Pandas 0.20 |
     | Textblob 0.10 |
     | Git |
     | NLTK 3.3 |
     | Python 3.6 - Anaconda Python Distribution (Recommended)|
-
-## Important Python3 Packages:
-    Numpy
-    Textblob
-    Pandas
-    Flask
-    NLTK - Corpus
 
 ## Install Prerequisites:
 
