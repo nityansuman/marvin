@@ -36,10 +36,10 @@ assess user responses.
 ```
 NLTK, Numpy and Pandas comes pre-installed with anacodna python distribution.
 
+To donwload NLTK text corpus, initiate the Python 3 environment. Run the following command:
 ```
-    $ python3
-        >>> import nltk
-        >>> nltk.download("all") # to download nltk corpus
+    >>> import nltk
+    >>> nltk.download("all") # to download nltk corpus
 ```
 
 ## To run the project:
@@ -56,11 +56,10 @@ NLTK, Numpy and Pandas comes pre-installed with anacodna python distribution.
 ``` 
     $ python3 runserver.py
 ```
---> Once run, it will generate a local url. Copy and paste the url in the web browser.
---> You are now good to go!
+--> Once run, it will generate a local url. Copy and paste the url in the web browser. Done!
 
 
-## For more information:
+## Important Links:
 * [Natural Language Processing](https://nltk.org/book/)
 * [Git](https://git-scm.com/)
 * [Github](https://github.com/)
