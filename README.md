@@ -73,8 +73,8 @@ Once run, it will generate a local url. Copy and paste the url in the web browse
 * [Flask](http://flask.pocoo.org/)
 * [Web Development](https://w3schoo.com/)
 * [Text Mining](https://en.wikipedia.org/wiki/Text_mining/)
-* [Python3](https://python.org/)
-* [Anacoonda Python Distribution](https://conda.io)
+* [Python](https://python.org/)
+* [Anaconda Python Distribution](https://conda.io)
 
 ## License
 [GPL 3.0](LICENSE)
