@@ -17,9 +17,10 @@ assess user responses.
 
 ## Prerequisites:
     | Flask 0.12 |
+    | Textblob 0.10 |
     | Git |
     | NLTK 3.3 |
-    | Python 3.6.1 - conda installation (Recommended)|
+    | Python 3.6 - Anaconda Python Distribution (Recommended)|
 
 ## Important Python3 Packages:
     Numpy
@@ -29,12 +30,12 @@ assess user responses.
     NLTK - Corpus
 
 ## Install Prerequisites:
---> Assuming anaconda for python 3 is installed:
+Assuming anaconda for python 3 is installed:
 ```
     $ conda install -c anaconda flask # to install flask
-    $ conda install -c conda-forge textblob $ to install textblolb library
+    $ conda install -c conda-forge textblob # to install textblolb library
 ```
-NLTK, Numpy and Pandas comes pre-installed with anacodna python distribution.
+NLTK, Numpy and Pandas comes pre-installed with anaconda python distribution.
 
 To donwload NLTK text corpus, initiate the Python 3 environment. Run the following command:
 ```
@@ -44,19 +45,21 @@ To donwload NLTK text corpus, initiate the Python 3 environment. Run the followi
 
 ## To run the project:
 
---> To download the project from github - open a terminal and run the following command:
+To download the project from github - open a terminal and run the following command:
 ```
     $ git clone https://github.com/nityansuman/MarvinAI.git
 ```
---> Now navigate to the root folder of the project from the same termianl:
+
+Now navigate to the root folder of the project from the same termianl:
 ```
     $ cd MarvinAI/marvin_ai
 ```
---> Run the following command to execute the project:
+
+Run the following command to execute the project:
 ``` 
     $ python3 runserver.py
 ```
---> Once run, it will generate a local url. Copy and paste the url in the web browser. Done!
+Once run, it will generate a local url. Copy and paste the url in the web browser. Done!
 
 
 ## Important Links:
