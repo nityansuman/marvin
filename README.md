@@ -50,7 +50,7 @@ To download the project from github - open a terminal and run the following comm
 
 Now navigate to the root folder of the project from the same termianl:
 ```
-    $ cd MarvinAI/marvin_ai
+    $ cd MarvinAI
 ```
 
 Run the following command to execute the project:
