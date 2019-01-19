@@ -1,3 +1,10 @@
+""" 
+@Author: kumar.nityan.suman
+@Date: 2018-05-01 21:00:01
+@Last Modified time: 2019-01-19 16:32:34
+"""
+
+
 from marvin_ai.article import Article
 import numpy as np
 import pandas as pd
@@ -14,9 +21,9 @@ def back_up_data(uname, subject_name, score_obt, flag):
 
     subject_name = subject_name.strip(" ").upper()
     if flag == "1":
-        filepath = "/Users/nityansuman/github/automating-the-examination-system/marvin_ai/static/data/db/user-data-log.csv"
+        filepath = "/Users/nityansuman/Home/Marvin-AI/marvin_ai/static/data/db/user_data_log.csv"
     else:
-        filepath = "/Users/nityansuman/github/automating-the-examination-system/marvin_ai/static/data/db/user-data-log_2.csv"
+        filepath = "/Users/nityansuman/Home/Marvin-AI/marvin_ai/static/data/db/user_data_log_2.csv"
     date = datetime.now().day
     month = datetime.now().month
     year = datetime.now().year
@@ -97,9 +104,9 @@ def relative_ranking(subjectname, flag):
     subjectname = subjectname.upper()
     
     if flag == "1":
-        df = pd.read_csv("/Users/nityansuman/github/automating-the-examination-system/marvin_ai/static/data/db/user-data-log.csv", header=0)
+        df = pd.read_csv("/Users/nityansuman/Home/Marvin-AI/marvin_ai/static/data/db/user_data_log.csv", header=0)
     else:
-        df = pd.read_csv("/Users/nityansuman/github/automating-the-examination-system/marvin_ai/static/data/db/user-data-log_2.csv", header=0)
+        df = pd.read_csv("/Users/nityansuman/Home/Marvin-AI/marvin_ai/static/data/db/user_data_log_2.csv", header=0)
     
     # get the datframe with a particular subject
     temp_df = df[df["SUBJECT_NAME"] == subjectname]

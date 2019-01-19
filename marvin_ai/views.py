@@ -1,3 +1,10 @@
+""" 
+@Author: kumar.nityan.suman
+@Date: 2018-05-15 10:00:33
+@Last Modified time: 2019-01-19 16:34:33
+"""
+
+
 # routes and views for the flask application.
 
 # import flask dependencies
@@ -60,13 +67,13 @@ def generate_test():
     filename = ""
     if subject_id == "1":
         global_name_list.append("Software Testing")
-        filename = "/Users/nityansuman/github/automating-the-examination-system/software-testing.txt"
+        filename = "/Users/nityansuman/Home/Marvin-AI/software-testing.txt"
     elif subject_id == "2":
         global_name_list.append("DBMS")
-        filename = "/Users/nityansuman/github/automating-the-examination-system/dbms.txt"
+        filename = "/Users/nityansuman/Home/Marvin-AI/dbms.txt"
     elif subject_id == "3":
         global_name_list.append("ML")
-        filename = "/Users/nityansuman/automating-the-examination-system/ml.txt"
+        filename = "/Users/nityansuman/Home/Marvin-AI/ml.txt"
     else:
         # file containing data to generate test
         file = request.files["file"]
