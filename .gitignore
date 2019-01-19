@@ -6,6 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
+# Do not track csv files
+*.csv
+
 # Distribution / packaging
 .Python
 env/
