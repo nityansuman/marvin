@@ -72,4 +72,4 @@ I am a Data Scientist and I code in Python. Here you will find multiple neural n
 
 Drop me a mail or connect with me on [Linkedin](https://linkedin.com/in/kumar-nityan-suman/) .
 
-If like the work I do, show your appreciation by 'FORK', 'START', or 'SHARE'.
+If you like the work I do, show your appreciation by 'FORK', 'START', or 'SHARE'.
