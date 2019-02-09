@@ -11,10 +11,6 @@ and web technologies to provide an inexpensive alternative to the current examin
 We implement a model to automatically generate questions with their respective answers and
 assess user responses.
 
-
-[![](https://sourcerer.io/fame/nityansuman/nityansuman/MarvinAI/images/0)](https://sourcerer.io/fame/nityansuman/nityansuman/MarvinAI/links/0)[![](https://sourcerer.io/fame/nityansuman/nityansuman/MarvinAI/images/1)](https://sourcerer.io/fame/nityansuman/nityansuman/MarvinAI/links/1)[![](https://sourcerer.io/fame/nityansuman/nityansuman/MarvinAI/images/2)](https://sourcerer.io/fame/nityansuman/nityansuman/MarvinAI/links/2)[![](https://sourcerer.io/fame/nityansuman/nityansuman/MarvinAI/images/3)](https://sourcerer.io/fame/nityansuman/nityansuman/MarvinAI/links/3)[![](https://sourcerer.io/fame/nityansuman/nityansuman/MarvinAI/images/4)](https://sourcerer.io/fame/nityansuman/nityansuman/MarvinAI/links/4)[![](https://sourcerer.io/fame/nityansuman/nityansuman/MarvinAI/images/5)](https://sourcerer.io/fame/nityansuman/nityansuman/MarvinAI/links/5)[![](https://sourcerer.io/fame/nityansuman/nityansuman/MarvinAI/images/6)](https://sourcerer.io/fame/nityansuman/nityansuman/MarvinAI/links/6)[![](https://sourcerer.io/fame/nityansuman/nityansuman/MarvinAI/images/7)](https://sourcerer.io/fame/nityansuman/nityansuman/MarvinAI/links/7)
-
-
 ## Prerequisites:
     | Flask 0.12 |
     | Numpy 0.10 |
@@ -71,5 +67,9 @@ Once run, it will generate a local url. Copy and paste the url in the web browse
 * [Python](https://python.org/)
 * [Anaconda Python Distribution](https://conda.io)
 
-## License
-[GPL 3.0](LICENSE)
+
+I am a Data Scientist and I code in Python. Here you will find multiple neural network architectures from the domain of 'Natural Language Processing' and 'Computer Vision', fully implemented in tensorflow without any external dependencies.
+
+Drop me a mail or connect with me on [Linkedin](https://linkedin.com/in/kumar-nityan-suman/) .
+
+If like the work I do, show your appreciation by 'FORK', 'START', or 'SHARE'.
