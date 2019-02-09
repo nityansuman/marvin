@@ -68,8 +68,6 @@ Once run, it will generate a local url. Copy and paste the url in the web browse
 * [Anaconda Python Distribution](https://conda.io)
 
 
-I am a Data Scientist and I code in Python. Here you will find multiple neural network architectures from the domain of 'Natural Language Processing' and 'Computer Vision', fully implemented in tensorflow without any external dependencies.
-
 Drop me a mail or connect with me on [Linkedin](https://linkedin.com/in/kumar-nityan-suman/) .
 
 If you like the work I do, show your appreciation by 'FORK', 'START', or 'SHARE'.
