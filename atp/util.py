@@ -9,11 +9,11 @@ import csv
 import numpy as np
 import pandas as pd
 from datetime import datetime
-from marvin_ai.article import Article
+from atp.article import Article
 
 
-subjective_path = "marvin_ai/static/data/db/user_data_log_subjective.csv"
-objective_path = "marvin_ai/static/data/db/user_data_log_objective.csv"
+subjective_path = str(os.getcwd()) + "/atp/static/data/db/user_data_log_subjective.csv"
+objective_path = str(os.getcwd()) +  "/atp/static/data/db/user_data_log_objective.csv"
 
 
 def back_up_data(uname, subject_name, score_obt, flag):

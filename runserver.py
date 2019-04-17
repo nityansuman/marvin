@@ -1,5 +1,5 @@
 """
-This script runs the marvin_ai application using a development server.
+This script runs the ATP application using a development server.
 """
 
 from os import environ

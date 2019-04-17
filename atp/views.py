@@ -11,14 +11,14 @@ import flask
 from datetime import datetime
 from flask import render_template, request
 from werkzeug import secure_filename
-from marvin_ai import app
+from atp import app
 
 # import app logic files
-from marvin_ai.article import Article
-from marvin_ai.subjective_question import generate_subj_question
-from marvin_ai.cosine_similarity import evaluate_subj_answer
-from marvin_ai.util import generate_trivia, get_obj_question, get_sbj_question
-from marvin_ai.util import relative_ranking, back_up_data
+from atp.article import Article
+from atp.subjective_question import generate_subj_question
+from atp.cosine_similarity import evaluate_subj_answer
+from atp.util import generate_trivia, get_obj_question, get_sbj_question
+from atp.util import relative_ranking, back_up_data
 # import important libraries
 import pandas as pd
 import numpy as np
