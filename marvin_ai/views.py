@@ -4,15 +4,12 @@
 @Last Modified time: 2019-01-19 16:34:33
 """
 
-
-# routes and views for the flask application.
-
 # import flask dependencies
 import os
 import click
+import flask
 from datetime import datetime
 from flask import render_template, request
-from flask import g
 from werkzeug import secure_filename
 from marvin_ai import app
 
@@ -67,13 +64,14 @@ def generate_test():
     filename = ""
     if subject_id == "1":
         global_name_list.append("Software Testing")
-        filename = "/Users/nityansuman/Home/Marvin-AI/software-testing.txt"
+        filename = str(os.getcwd()) + "/software-testing.txt"
+        print(filename)
     elif subject_id == "2":
         global_name_list.append("DBMS")
-        filename = "/Users/nityansuman/Home/Marvin-AI/dbms.txt"
+        filename = str(os.getcwd()) + "/dbms.txt"
     elif subject_id == "3":
         global_name_list.append("ML")
-        filename = "/Users/nityansuman/Home/Marvin-AI/ml.txt"
+        filename = str(os.getcwd()) + "/ml.txt"
     else:
         # file containing data to generate test
         file = request.files["file"]
