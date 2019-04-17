@@ -1,0 +1,5 @@
+flask>=0.12
+nltk>=3.3
+numpy>=1.10
+pandas>=0.20
+textblob>=0.10
