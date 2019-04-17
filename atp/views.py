@@ -64,14 +64,14 @@ def generate_test():
     filename = ""
     if subject_id == "1":
         global_name_list.append("Software Testing")
-        filename = str(os.getcwd()) + "/software-testing.txt"
+        filename = str(os.getcwd()) + "/sample_test_data/software-testing.txt"
         print(filename)
     elif subject_id == "2":
         global_name_list.append("DBMS")
-        filename = str(os.getcwd()) + "/dbms.txt"
+        filename = str(os.getcwd()) + "/sample_test_data/dbms.txt"
     elif subject_id == "3":
         global_name_list.append("ML")
-        filename = str(os.getcwd()) + "/ml.txt"
+        filename = str(os.getcwd()) + "/sample_test_data/ml.txt"
     else:
         # file containing data to generate test
         file = request.files["file"]
