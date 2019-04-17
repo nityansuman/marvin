@@ -37,16 +37,15 @@ To donwload NLTK text corpus, initiate the Python 3 environment. Run the followi
 ```
 
 ## To run the project:
-
-To download the project from github - open a terminal and run the following command:
 ```
-    $ git clone https://github.com/nityansuman/MarvinAI.git
+To download the project from github - open a terminal and run the following command:
+$ git clone https://github.com/nityansuman/MarvinAI.git
 
 Now navigate to the root folder of the project from the same termianl:
-    $ cd Automated-Test-Platform/
+$ cd Automated-Test-Platform/
 
 Run the following command to execute the project:
-    $ python3 runserver.py
+$ python3 runserver.py
 ```
 
 Once run, it will generate a local url. Copy and paste the url in the web browser. Done!
