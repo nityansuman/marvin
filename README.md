@@ -16,7 +16,6 @@ assess user responses.
     | Numpy 0.10 |
     | Pandas 0.20 |
     | Textblob 0.10 |
-    | Git |
     | NLTK 3.3 |
     | Python 3.6 - Anaconda Python Distribution (Recommended)|
 
@@ -24,12 +23,12 @@ assess user responses.
 
 [How to install anaconda python distribution ?](https://docs.anaconda.com/anaconda/install/)
 
-Assuming anaconda for python 3 is installed:
+Setup project environment. Assuming anaconda for python 3 is installed:
 ```
-    $ conda install -c anaconda flask # to install flask
-    $ conda install -c conda-forge textblob # to install textblolb library
+    $ pip install -r REQUIREMENTS.txt
 ```
-NLTK, Numpy and Pandas comes pre-installed with anaconda python distribution.
+
+NLTK, Numpy and Pandas comes pre-installed with anaconda python distribution. But any other dependencies will be handeled with the above command.
 
 To donwload NLTK text corpus, initiate the Python 3 environment. Run the following command:
 ```
@@ -42,17 +41,14 @@ To donwload NLTK text corpus, initiate the Python 3 environment. Run the followi
 To download the project from github - open a terminal and run the following command:
 ```
     $ git clone https://github.com/nityansuman/MarvinAI.git
-```
 
 Now navigate to the root folder of the project from the same termianl:
-```
-    $ cd MarvinAI
-```
+    $ cd Automated-Test-Platform/
 
 Run the following command to execute the project:
-``` 
     $ python3 runserver.py
 ```
+
 Once run, it will generate a local url. Copy and paste the url in the web browser. Done!
 
 
@@ -63,7 +59,6 @@ Once run, it will generate a local url. Copy and paste the url in the web browse
 * [NLTK](https://nltk.org/)
 * [Flask](http://flask.pocoo.org/)
 * [Web Development](https://w3schoo.com/)
-* [Text Mining](https://en.wikipedia.org/wiki/Text_mining/)
 * [Python](https://python.org/)
 * [Anaconda Python Distribution](https://conda.io)
 
