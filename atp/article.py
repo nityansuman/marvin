@@ -1,5 +1,5 @@
 """ 
-@Author: kumar.nityan.suman
+@Author: Kumar Nityan Suman
 @Date: 2018-01-19 09:30:07
 @Last Modified time: 2019-01-19 16:30:07
 """
@@ -13,29 +13,22 @@ import nltk
 class Article:
     def __init__(self, title):
         self.title = title
-        fp = open(title, mode="r")
-        self.summary = fp.read()
-        fp.close()
-
+        with open(title, mode="r") as fp:
+            self.summary = fp.read()
 
     def generate_trivia_sentences(self):
         sentences = nltk.sent_tokenize(self.summary)
-
-        # Remove the first sentence - it's never a good one
-        # del sentences[0] just kidding
-
-        trivia_sentences = []
+        trivia_sentences = list()
         for sentence in sentences:
             trivia = self.evaluate_sentence(sentence)
             if trivia:
                 trivia_sentences.append(trivia)
-
         return trivia_sentences
 
 
     def get_similar_words(self, word):
         # In the absence of a better method, take the first synset
-        synsets = wn.synsets(word, pos='n')
+        synsets = wn.synsets(word, pos="n")
 
         # If there aren't any synsets, return an empty list
         if len(synsets) == 0:
@@ -52,14 +45,11 @@ class Article:
         # Take the name of the first lemma for the first 8 hyponyms
         similar_words = []
         for hyponym in hyponyms:
-            similar_word = hyponym.lemmas()[0].name().replace('_', ' ')
-            
+            similar_word = hyponym.lemmas()[0].name().replace("_", " ")
             if similar_word != word:
                 similar_words.append(similar_word)
-
             if len(similar_words) == 8:
                 break
-
         return similar_words
 
 
@@ -67,7 +57,7 @@ class Article:
         # if sentence starts with an adverb or is less than 4 words long
         # probably not the best fit
         tags = nltk.pos_tag(sentence)
-        if tags[0][1] == 'RB' or len(nltk.word_tokenize(sentence)) < 4:
+        if tags[0][1] == "RB" or len(nltk.word_tokenize(sentence)) < 4:
             return None
 
         tag_map = {word.lower(): tag for word, tag in tags}
@@ -129,17 +119,17 @@ class Article:
 
         if len(replace_nouns) == 1:
             # If we're only replacing one word, use WordNet to find similar words
-            trivia['similar_words'] = self.get_similar_words(replace_nouns[0])
+            trivia["similar_words"] = self.get_similar_words(replace_nouns[0])
         else:
             # If we're replacing a phrase, don't bother - it's too unlikely to make sense
-            trivia['similar_words'] = []
+            trivia["similar_words"] = []
 
         # Blank out our replace words (only the first occurrence of the word in the sentence)
-        replace_phrase = ' '.join(replace_nouns)
-        blanks_phrase = ('__________ ' * len(replace_nouns)).strip()
+        replace_phrase = " ".join(replace_nouns)
+        blanks_phrase = ("__________" * len(replace_nouns)).strip()
 
         expression = re.compile(re.escape(replace_phrase), re.IGNORECASE)
         sentence = expression.sub(blanks_phrase, str(sentence), count=1)
 
-        trivia['Question'] = sentence
+        trivia["Question"] = sentence
         return trivia
