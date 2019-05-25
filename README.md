@@ -11,6 +11,8 @@ and web technologies to provide an inexpensive alternative to the current examin
 We implement a model to automatically generate questions with their respective answers and
 assess user responses.
 
+![Image](images/home.png)
+
 ## Prerequisites:
     | Flask 0.12 |
     | Numpy 0.10 |
