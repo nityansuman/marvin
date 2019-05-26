@@ -4,6 +4,7 @@
 @Last Modified time: 2019-01-19 16:32:34
 """
 
+
 import os
 import csv
 import numpy as np
@@ -18,11 +19,11 @@ objective_path = str(os.getcwd()) +  "/atp/static/data/db/user_data_log_objectiv
 
 def back_up_data(uname, subject_name, score_obt, flag):
     # open the database file and save the score
-    user_name_list = uname.split(" ")
+    user_name_list = uname.split()
     uname = "_".join(user_name_list)
     uname = uname.upper()
 
-    subject_name = subject_name.strip(" ").upper()
+    subject_name = subject_name.strip().upper()
     if flag == "1":
         filepath = objective_path
     else:
@@ -33,22 +34,10 @@ def back_up_data(uname, subject_name, score_obt, flag):
 
     row = [date, month, year, uname, subject_name, score_obt]
     
-    if os.path.isfile(filepath) == True:
-        # file exists then append row
-        fp = open(filepath, mode="a")
+    # create a new file and write to it
+    with open(filepath, mode="a") as fp:
         fp_writer = csv.writer(fp)
         fp_writer.writerow(row)
-        
-        fp.close()
-    else:
-        # create a new file and write to it
-        fp = open(filepath, mode="w")
-        fp_writer = csv.writer(fp)
-        fp_writer.writerow(["DATE", "MONTH", "YEAR", "USERNAME", "SUBJECT_NAME", "SCORE"])
-        fp_writer.writerow(row)
-
-        fp.close()
-    # return status
     return True
 
 
@@ -107,9 +96,9 @@ def relative_ranking(subjectname, flag):
     subjectname = subjectname.upper()
     
     if flag == "1":
-        df = pd.read_csv(objective_path, header=0)
+        df = pd.read_csv(objective_path)
     else:
-        df = pd.read_csv(subjective_path, header=0)
+        df = pd.read_csv(subjective_path)
     
     # get the datframe with a particular subject
     temp_df = df[df["SUBJECT_NAME"] == subjectname]
