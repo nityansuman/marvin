@@ -160,7 +160,7 @@ def output():
     if global_test_id[0] == "1":
         flag = "1"
         # evaluate objective answer
-        for i in range(len(default_ans)):
+        for i in range(len(user_ans)):
             if user_ans[i] == default_ans[i]:
                 total_score += 100
         total_score /= 3
