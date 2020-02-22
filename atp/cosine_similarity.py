@@ -1,10 +1,3 @@
-""" 
-@Author: Kumar Nityan Suman
-@Date: 2018-02-19 21:03:14
-@Last Modified time: 2019-01-17 00:30:05
-"""
-
-
 # Load packages
 import os
 import math

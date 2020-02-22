@@ -1,86 +1,82 @@
-""" 
-@Author: Kumar Nityan Suman
-@Date: 2018-05-01 21:00:01
-@Last Modified time: 2019-01-19 16:32:34
-"""
-
-
+# Import packages
 import os
 import csv
 import numpy as np
 import pandas as pd
 from datetime import datetime
-from atp.article import Article
+from atp.objective_question import ObjectiveQuestion
 
-
+# Path for backup
 subjective_path = str(os.getcwd()) + "/atp/static/data/db/user_data_log_subjective.csv"
 objective_path = str(os.getcwd()) +  "/atp/static/data/db/user_data_log_objective.csv"
 
 
-def back_up_data(uname, subject_name, score_obt, flag):
-    # open the database file and save the score
-    user_name_list = uname.split()
-    uname = "_".join(user_name_list)
-    uname = uname.upper()
-
+def back_up_data(username, subject_name, score_obt, flag):
+    # Transform username and subject_name for backup
+    username = "_".join([x.upper() for x in username.split()])
     subject_name = subject_name.strip().upper()
+    # Identify test type
     if flag == "1":
         filepath = objective_path
     else:
         filepath = subjective_path
+    # Access calendar features
     date = datetime.now().day
     month = datetime.now().month
     year = datetime.now().year
+    # Create a row for backup
+    column_names = ["Date", "Month", "Year", "Username", "Subject", "Score"]
+    row = [date, month, year, username, subject_name, score_obt] # Format of the CSV file
+    # Check for a valid filepath
+    file_exists = os.path.isfile(filepath)
+    if file_exists:
+        # Create a new file and backup
+        try:
+            with open(filepath, mode="a") as fp:
+                fp_writer = csv.writer(fp)
+                fp_writer.writerow(column_names)
+                fp_writer.writerow(row)
+                return True
+        except Exception as e:
+            print(e)
+    else:
+        # Backup data
+        try:
+            with open(filepath, mode="w") as fp:
+                fp_writer = csv.writer(fp)
+                fp_writer.writerow(row)
+                return True
+        except Exception as e:
+            print(e)
+    return False
 
-    row = [date, month, year, uname, subject_name, score_obt]
+
+def get_question_answer_pairs(pair, flag):
+    if flag == "obj":
+        length = 3
+    elif flag == "subj":
+        length = 2
+    else:
+        print("Error! Wrong `test_id` passed.")
+        return None
     
-    # create a new file and write to it
-    with open(filepath, mode="a") as fp:
-        fp_writer = csv.writer(fp)
-        fp_writer.writerow(row)
-    return True
-
-
-def get_obj_question(pair):
     que = list()
     ans = list()
-    while len(que) < 3:
-        # generate a random number
-        rand_num = np.random.randint(0, len(pair))
-        # get the que and ans to theat corresponding number
-        new_list_dict = pair[rand_num]
-        if new_list_dict["Question"] not in que:
-            que.append(new_list_dict["Question"])
-            ans.append(new_list_dict["Answer"])
-        else:
-            continue
-    return que, ans
 
-
-def get_sbj_question(pair):
-    que = list()
-    ans = list()
-    while len(que) < 2:
-        # generate a random number
+    while len(que) < length:
         rand_num = np.random.randint(0, len(pair))
-        # get the que and ans to theat corresponding number
-        new_list_dict = pair[rand_num]
-        if new_list_dict["Question"] not in que:
-            que.append(new_list_dict["Question"])
-            ans.append(new_list_dict["Answer"])
+        if pair[rand_num]["Question"] not in que:
+            que.append(pair[rand_num]["Question"])
+            ans.append(pair[rand_num]["Answer"])
         else:
             continue
     return que, ans
 
 
 def generate_trivia(filename):
-    # Retrieve the trivia sentences
     questions = list()
-    # create an object
     obj_a = Article(filename)
-    # call method on the object
     questions.append(obj_a.generate_trivia_sentences())
-    # list to store que and ans in the form of a dictionary
     que_ans_pair = list()
     for lis in questions:
         for que in lis:
@@ -92,18 +88,12 @@ def generate_trivia(filename):
 
 
 def relative_ranking(subjectname, flag):
-    # load the data from file
     subjectname = subjectname.upper()
-    
     if flag == "1":
         df = pd.read_csv(objective_path)
     else:
         df = pd.read_csv(subjective_path)
-    
-    # get the datframe with a particular subject
     temp_df = df[df["SUBJECT_NAME"] == subjectname]
-    
-    # find the maximum and minimum marks scored in that subject
     max_score = max(temp_df["SCORE"])
     min_score = min(temp_df["SCORE"])
     mean_score = temp_df["SCORE"].mean()
