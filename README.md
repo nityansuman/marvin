@@ -41,10 +41,10 @@ To donwload NLTK text corpus, initiate the Python 3 environment. Run the followi
 ## To run the project:
 ```
 To download the project from github - open a terminal and run the following command:
-$ git clone https://github.com/nityansuman/automated-test-platform/.git
+$ git clone https://github.com/nityansuman/automated-test-app/.git
 
 Now navigate to the root folder of the project from the same termianl:
-$ cd automated-test-platform/
+$ cd automated-test-app/
 
 Run the following command to execute the project:
 $ python runserver.py
