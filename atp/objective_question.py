@@ -1,20 +1,21 @@
-""" 
-@Author: Kumar Nityan Suman
-@Date: 2018-01-19 09:30:07
-@Last Modified time: 2019-01-19 16:30:07
-"""
-
-
-from nltk.corpus import wordnet as wn
-from textblob import TextBlob
+# Import packages
+import os
+import sys
 import re
 import nltk
+from nltk.corpus import wordnet as wn
+from textblob import TextBlob
 
-class Article:
+
+class ObjectiveQuestion:
+
     def __init__(self, title):
         self.title = title
-        with open(title, mode="r") as fp:
-            self.summary = fp.read()
+        try:
+            with open(title, mode="r") as fp:
+                self.summary = fp.read()
+        except FileNotFoundError as e:
+            print(e)
 
     def generate_trivia_sentences(self):
         sentences = nltk.sent_tokenize(self.summary)
@@ -26,7 +27,8 @@ class Article:
         return trivia_sentences
 
 
-    def get_similar_words(self, word):
+    @staticmethod
+    def get_similar_words(word):
         # In the absence of a better method, take the first synset
         synsets = wn.synsets(word, pos="n")
 
@@ -54,52 +56,46 @@ class Article:
 
 
     def evaluate_sentence(self, sentence):
-        # if sentence starts with an adverb or is less than 4 words long
-        # probably not the best fit
+        # If sentence starts with an adverb or is less than 4 words long probably not the best fit
         tags = nltk.pos_tag(sentence)
         if tags[0][1] == "RB" or len(nltk.word_tokenize(sentence)) < 4:
             return None
 
-        tag_map = {word.lower(): tag for word, tag in tags}
-
-        # extract noun phrases from the sentence
+        # Extract noun phrases from the sentence
         noun_phrases = list()
-        grammar1 = r""" CHUNK: {<NN.*|JJ>*<NN.*>} """
-        grammar2 = r"""
+        grammer = r"""
             CHUNK: {<NN>+<IN|DT>*<NN>+}
                 {<NN>+<IN|DT>*<NNP>+}
                 {<NNP>+<NNS>*}
             """
-        chunker = nltk.RegexpParser(grammar2)
+        chunker = nltk.RegexpParser(grammer)
         tokens = nltk.word_tokenize(sentence)
         pos_tokens = nltk.tag.pos_tag(tokens)
         tree = chunker.parse(pos_tokens)
 
-        # select phrase
+        # Select phrase
         for subtree in tree.subtrees():
             if subtree.label() == "CHUNK":
                 temp = ""
                 for sub in subtree:
                     temp += sub[0]
                     temp += " "
-                temp = temp.strip() # strip extra whitespace
+                temp = temp.strip()
                 noun_phrases.append(temp)
         
-        # replace nouns
+        # Replace nouns
         replace_nouns = []
-        for word, tag in tags:
+        for word, _ in tags:
             for phrase in noun_phrases:
                 if phrase[0] == '\'':
                     # If it starts with an apostrophe, ignore it
-                    # (this is a weird error that should probably
-                    # be handled elsewhere)
+                    # (this is a weird error that should probably be handled elsewhere)
                     break
                 if word in phrase:
                     # Blank out the last two words in this phrase
                     [replace_nouns.append(phrase_word) for phrase_word in phrase.split()[-2:]]
                     break
-            # If we couldn't find the word in any phrases,
-            # replace it on its own
+            # If we couldn't find the word in any phrases
             if len(replace_nouns) == 0:
                 replace_nouns.append(word)
             break
@@ -107,6 +103,7 @@ class Article:
         if len(replace_nouns) == 0:
             # Return none if we found no words to replace
             return None
+        
         val = 99
         for i in replace_nouns:
             if len(i) < val:
