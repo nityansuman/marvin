@@ -19,7 +19,8 @@ assess user responses.
     | Pandas 0.20 |
     | Textblob 0.10 |
     | NLTK 3.3 |
-    | Python 3.6 - Anaconda Python Distribution (Recommended)|
+    | Python 3.7 - Anaconda Python Distribution (Recommended)|
+
 
 ## Install Prerequisites:
 
@@ -37,6 +38,7 @@ To donwload NLTK text corpus, initiate the Python 3 environment. Run the followi
     >>> import nltk
     >>> nltk.download("all") # to download nltk corpus
 ```
+
 
 ## To run the project:
 ```
