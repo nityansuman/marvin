@@ -75,7 +75,7 @@ def get_question_answer_pairs(pair, flag):
 
 def generate_trivia(filename):
     questions = list()
-    obj_a = Article(filename)
+    obj_a = ObjectiveQuestion(filename)
     questions.append(obj_a.generate_trivia_sentences())
     que_ans_pair = list()
     for lis in questions:
