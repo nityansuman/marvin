@@ -21,7 +21,7 @@ from werkzeug.utils import secure_filename
 from atp import app
 from atp.objective import ObjectiveTest
 from atp.subjective import SubjectiveTest
-from atp.utils import relative_ranking, back_up_data
+from atp.utils import relative_ranking, backup
 
 # Placeholders
 username = None
@@ -39,7 +39,7 @@ def home():
     dir = os.path.join(str(os.getcwd()), "database")
     session["database_path"] = os.path.join(str(os.getcwd()), "database", "userlog.csv")
     if "userlog.csv" not in os.listdir(dir):
-        df = pd.DataFrame(columns=["DATE", "USERNAME", "SUBJECT", "SUBJECT_ID", "TYPE", "SCORE", "RESULT", "RELATIVE_RANKING"])
+        df = pd.DataFrame(columns=["DATE", "USERNAME", "SUBJECT", "SUBJECT_ID", "TEST_TYPE", "TEST_ID", "SCORE", "RESULT"])
         df.to_csv(session["database_path"], index=False)
     else:
         print("Database in place!")
@@ -150,7 +150,7 @@ def output():
                 total_score += 100
         total_score /= 3
         total_score = round(total_score, 3)
-        if total_score > 33.33:
+        if total_score >= 33.33:
             status = "Pass"
         else:
             status = "Fail"
@@ -166,25 +166,25 @@ def output():
         else:
             status = "Fail"
     # Backup data
-    #
+    session["score"] = total_score
+    session["result"] = status
+    try:
+        status = backup(session)
+    except Exception as e:
+        print("Exception raised at `views.__output`:", e)
     # Compute relative ranking of the student
-    #
-    #max_score, mean_score, min_score = relative_ranking(session["subject_name"], session["test_id"], session["database_path"])
-    max_score = 100
-    min_score = 0
-    mean_score = 25
-
+    max_score, min_score, mean_score = relative_ranking(session)
     # Clear instance
     global_answers.clear()
 
     # Render output
     return render_template(
         "output.html",
-        show_score=total_score,
+        show_score=session["score"],
         username=session["username"],
         subjectname=session["subject_name"],
-        status=status,
+        status=session["result"],
         max_score=max_score,
-        mean_score=mean_score,
-        min_score=min_score
+        min_score=min_score,
+        mean_score=mean_score
     )
