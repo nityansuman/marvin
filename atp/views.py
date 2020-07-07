@@ -1,107 +1,122 @@
+# Copyright 2020 The `Kumar Nityan Suman` (https://github.com/nityansuman/). All Rights Reserved.
+#
+#                     GNU GENERAL PUBLIC LICENSE
+#                        Version 3, 29 June 2007
+#  Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>
+#  Everyone is permitted to copy and distribute verbatim copies
+#  of this license document, but changing it is not allowed.
+# ==============================================================================
+
+
 # Import packages
 import os
+import sys
 import click
 import flask
 import pandas as pd
 import numpy as np
 from datetime import datetime
-from flask import render_template, request
+from flask import render_template, request, session
 from werkzeug.utils import secure_filename
 from atp import app
-from atp.objective_question import ObjectiveQuestion
-from atp.subjective_question import generate_subj_question
-from atp.cosine_similarity import evaluate_subj_answer
-from atp.util import generate_trivia, get_question_answer_pairs
-from atp.util import relative_ranking, back_up_data
+from atp.objective import ObjectiveTest
+from atp.subjective import SubjectiveTest
+from atp.utils import relative_ranking, back_up_data
 
-# Global placehodlers
-global_name_list = list()
-global_answer_list = list()
-global_test_id = list()
+# Placeholders
+username = None
+subject_name = None
+test_id = None
+objective_generatgor = None
+subjective_generator = None
+global_answers = list()
 
 
 @app.route('/')
 @app.route('/home')
 def home():
     ''' Renders the home page '''
+    dir = os.path.join(str(os.getcwd()), "database")
+    session["database_path"] = os.path.join(str(os.getcwd()), "database", "userlog.csv")
+    if "userlog.csv" not in os.listdir(dir):
+        df = pd.DataFrame(columns=["DATE", "USERNAME", "SUBJECT", "SUBJECT_ID", "TYPE", "SCORE", "RESULT", "RELATIVE_RANKING"])
+        df.to_csv(session["database_path"], index=False)
+    else:
+        print("Database in place!")
+    session["date"] = datetime.now()
     return render_template(
         "index.html",
-        date=datetime.now().day,
-        month=datetime.now().month,
-        year=datetime.now().year
+        date=session["date"].day,
+        month=session["date"].month,
+        year=session["date"].year
     )
 
 
 @app.route("/form", methods=['GET', 'POST'])
 def form():
     ''' Prompt user to start the test '''
-    global_name_list.clear()
-    user_name = request.form["username"]
-    if user_name == "":
-        user_name = "Admin"
-    
-    global_name_list.append(user_name)
-
+    if request.form["username"] == "":
+        session["username"] = "Username"
+    else:
+        session["username"] = request.form["username"]
     return render_template(
         "form.html",
-        username=user_name
+        username=session["username"]
     )
 
 
-@app.route("/generate_test", methods=['GET', 'POST'])
+@app.route("/generate_test", methods=["GET", "POST"])
 def generate_test():
-    subject_id = request.form["subject_id"]
-    if subject_id == "se":
-        global_name_list.append("Software Testing")
-        filename = str(os.getcwd()) + "/sample_test_data/software-testing.txt"
-        print(filename)
-    elif subject_id == "db":
-        global_name_list.append("DBMS")
-        filename = str(os.getcwd()) + "/sample_test_data/dbms.txt"
-    elif subject_id == "ml":
-        global_name_list.append("ML")
-        filename = str(os.getcwd()) + "/sample_test_data/ml.txt"
-    elif subject_id == "custom":
+    session["subject_id"] = request.form["subject_id"]
+    if session["subject_id"] == "0":
+        session["subject_name"] = "SOFTWARE ENGINEERING"
+        session["filepath"] = os.path.join(str(os.getcwd()), "corpus", "software-testing.txt")
+    elif session["subject_id"] == "1":
+        session["subject_name"] = "DBMS"
+        session["filepath"] = os.path.join(str(os.getcwd()), "corpus", "dbms.txt")
+    elif session["subject_id"] == "2":
+        session["subject_name"] = "Machine Learning"
+        session["filepath"] = os.path.join(str(os.getcwd()), "corpus", "ml.txt")
+    elif session["subject_id"] == "99":
         file = request.files["file"]
-        filename = secure_filename(file.filename)
+        session["filepath"] = secure_filename(file.filename)
         file.save(secure_filename(file.filename))
-        global_name_list.append("Custom")
+        session["subject_name"] = "CUSTOM"
     else:
-        print("Error! Wrong `subject_id` received from the HTML form.")
-        return None
+        print("Done!")
+    session["test_id"] = request.form["test_id"]
 
-    test_id = request.form["test_id"]
-    global_test_id.append(test_id)
-
-    if test_id == "obj":
-        que_ans_pair = generate_trivia(filename)
-        question_list, answer_list = get_question_answer_pairs(que_ans_pair, test_id)
+    if session["test_id"] == "0":
+        # Generate objective test
+        objective_generator = ObjectiveTest(session["filepath"])
+        question_list, answer_list = objective_generator.generate_test()
         for ans in answer_list:
-            global_answer_list.append(ans)
-
+            global_answers.append(ans)
+        
         return render_template(
             "objective_test.html",
-            username=global_name_list[0],
-            testname=global_name_list[1],
+            username=session["username"],
+            testname=session["subject_name"],
             question1=question_list[0],
             question2=question_list[1],
             question3=question_list[2]
         )
-    elif test_id == "subj":
-        que_ans_pair = generate_subj_question(filename)
-        question_list, answer_list = get_question_answer_pairs(que_ans_pair, test_id)
+    elif session["test_id"] == "1":
+        # Generate subjective test
+        subjective_generator = SubjectiveTest(session["filepath"])
+        question_list, answer_list = subjective_generator.generate_test(num_of_questions=2)
         for ans in answer_list:
-            global_answer_list.append(ans)
-
+            global_answers.append(ans)
+        
         return render_template(
             "subjective_test.html",
-            username=global_name_list[0],
-            testname=global_name_list[1],
+            username=session["username"],
+            testname=session["subject_name"],
             question1=question_list[0],
             question2=question_list[1]
         )
     else:
-        print("Error! Wrong `test_id` received from the HTML form.")
+        print("Done!")
         return None
 
 
@@ -109,66 +124,65 @@ def generate_test():
 def output():
     default_ans = list()
     user_ans = list()
-    if global_test_id[0] == "obj":
+    if session["test_id"] == "0":
         # Access objective answers
         user_ans.append(str(request.form["answer1"]).strip().upper())
         user_ans.append(str(request.form["answer2"]).strip().upper())
         user_ans.append(str(request.form["answer3"]).strip().upper())
-    elif global_test_id[1] == "subj":
+    elif session["test_id"] == "1":
         # Access subjective answers
         user_ans.append(str(request.form["answer1"]).strip().upper())
         user_ans.append(str(request.form["answer2"]).strip().upper())
     else:
-        print("Error! Wrong `test_id` found in `global_test_id`!!")
+        print("Done!")
     
-    for x in global_answer_list:
+    # Process answers
+    for x in global_answers:
         default_ans.append(str(x).strip().upper())
     
-    username = global_name_list[0]
-    subjectname = global_name_list[1]
-
     # Evaluate the user repsonse
     total_score = 0
-    flag = ""
-    if global_test_id[0] == "obj":
-        flag = "objective"
-        # evaluate objective answer
+    status = None
+    if session["test_id"] == "0":
+        # Evaluate objective answer
         for i in range(len(user_ans)):
             if user_ans[i] == default_ans[i]:
                 total_score += 100
         total_score /= 3
         total_score = round(total_score, 3)
-        # back up the user details and score for rank analysis
-        status = "Failed to save your score!"
-        if back_up_data(username, subjectname, total_score, flag):
-            status = "Your score has been saved!"
-    elif global_test_id[0] == "sub":
-        flag = "subjective"
+        if total_score > 33.33:
+            status = "Pass"
+        else:
+            status = "Fail"
+    elif session["test_id"] == "1":
         # evaluate subjective answer
         for i in range(len(default_ans)):
-            total_score += evaluate_subj_answer(default_ans[i], user_ans[i])
+            # Subjective test
+            total_score += subjective_generator.evaluate_subjective_answer(default_ans[i], user_ans[i])
         total_score /= 2
         total_score = round(total_score, 3)
-        # back up the user details and score for rank analysis
-        status = "Failed to save your score!"
-        if back_up_data(username, subjectname, total_score, flag):
-            status = "Your score has been saved!"
+        if total_score > 50.0:
+            status = "Pass"
+        else:
+            status = "Fail"
+    # Backup data
+    #
+    # Compute relative ranking of the student
+    #
+    #max_score, mean_score, min_score = relative_ranking(session["subject_name"], session["test_id"], session["database_path"])
+    max_score = 100
+    min_score = 0
+    mean_score = 25
 
-    max_score, mean_score, min_score = relative_ranking(subjectname, flag)
+    # Clear instance
+    global_answers.clear()
 
-    # Clear the global variables for next instance
-    global_name_list.clear()
-    global_answer_list.clear()
-    global_test_id.clear()
-    global_test_id.clear()
-    user_ans.clear()
-    default_ans.clear()
-
+    # Render output
     return render_template(
         "output.html",
         show_score=total_score,
-        username=username,
-        subjectname=subjectname,
+        username=session["username"],
+        subjectname=session["subject_name"],
         status=status,
         max_score=max_score,
         mean_score=mean_score,
