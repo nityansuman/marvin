@@ -68,22 +68,18 @@ def relative_ranking(session):
     Returns:
         int, float, int -- Maximum, Minimum and Average score obtained by the user in a paarticular subject test
     """
-    max_score = "None"
-    min_score = "None"
+    max_score = 100.0
+    min_score = 0.0
     mean_score = "None"
     try:
         df = pd.read_csv(session["database_path"])
-        print("-->", df.head(10))
-        print("--->", df.dtypes)
     except Exception as e:
         print("Exception raised at `utils__relative_ranking`:", e)
     else:
         df = df[(df["SUBJECT_ID"] == int(session["subject_id"])) & (df["TEST_ID"] == int(session["test_id"]))]
-        print(df.head())
         if df.shape[0] >= 1:
-            max_score = df["SCORE"].max()
-            min_score = df["SCORE"].min()
-            mean_score = df["SCORE"].mean()
-            print("Computed:", max_score, min_score)
+            max_score = np.round(df["SCORE"].max(), decimals=2)
+            min_score = np.round(df["SCORE"].min(), decimals=2)
+            mean_score = np.round(df["SCORE"].mean(), decimals=2)
     finally:
         return max_score, min_score, mean_score

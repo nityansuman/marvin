@@ -166,7 +166,7 @@ def output():
         else:
             status = "Fail"
     # Backup data
-    session["score"] = total_score
+    session["score"] = np.round(total_score, decimals=2)
     session["result"] = status
     try:
         status = backup(session)
