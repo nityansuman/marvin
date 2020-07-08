@@ -13,7 +13,7 @@ assess user responses.
 
 ![Image](images/home.png)
 
-## Prerequisites:
+## Prerequisites
     | Flask 0.12 |
     | Numpy 0.10 |
     | Pandas 0.20 |
@@ -22,7 +22,7 @@ assess user responses.
     | Python 3.7 - Anaconda Python Distribution (Recommended)|
 
 
-## Install Prerequisites:
+## Install Prerequisites
 
 [How to install anaconda python distribution ?](https://docs.anaconda.com/anaconda/install/)
 
@@ -40,7 +40,7 @@ To donwload NLTK text corpus, initiate the Python 3 environment. Run the followi
 ```
 
 
-## To run the project:
+## To run the project
 ```
 To download the project from github - open a terminal and run the following command:
 $ git clone https://github.com/nityansuman/automated-test-app/.git
@@ -55,7 +55,7 @@ $ python runserver.py
 Once run, it will generate a local url. Copy and paste the url in the web browser. Done!
 
 
-## Important Links:
+## Important Links
 * [Natural Language Processing](https://nltk.org/book/)
 * [Git](https://git-scm.com/)
 * [Github](https://github.com/)
