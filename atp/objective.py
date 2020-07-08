@@ -9,13 +9,10 @@
 
 
 # Import packages
-import os
 import re
-import sys
 import nltk
 import numpy as np
 from nltk.corpus import wordnet as wn
-from textblob import TextBlob
 
 
 class ObjectiveTest:

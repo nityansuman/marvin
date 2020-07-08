@@ -8,13 +8,9 @@
 # ==============================================================================
 
 
-# Load packages
-import os
-import sys
-import math
+# Import packages
 import numpy as np
 import nltk as nlp
-from nltk.corpus import stopwords
 
 
 class SubjectiveTest:

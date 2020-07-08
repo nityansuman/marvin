@@ -10,8 +10,6 @@
 
 # Import packages
 import os
-import sys
-import click
 import flask
 import pandas as pd
 import numpy as np
@@ -24,11 +22,6 @@ from atp.subjective import SubjectiveTest
 from atp.utils import relative_ranking, backup
 
 # Placeholders
-username = None
-subject_name = None
-test_id = None
-objective_generatgor = None
-subjective_generator = None
 global_answers = list()
 
 

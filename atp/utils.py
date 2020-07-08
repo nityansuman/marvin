@@ -11,12 +11,9 @@
 
 # Import packages
 import os
-import os
 import csv
-import nltk as nlp
 import numpy as np
 import pandas as pd
-from datetime import datetime
 
 
 def backup(session):

@@ -10,7 +10,6 @@
 
 # Import packages
 import os
-import sys
 from atp import app
 
 
