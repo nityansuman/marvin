@@ -68,4 +68,4 @@ Once run, it will generate a local url. Copy and paste the url in the web browse
 
 Drop me a mail or connect with me on [Linkedin](https://linkedin.com/in/kumar-nityan-suman/) .
 
-If you like the work I do, show your appreciation by 'FORK', 'START', and 'SHARE'.
+If you like the work I do, show your appreciation by 'FORK', 'START' and 'SHARE'.
