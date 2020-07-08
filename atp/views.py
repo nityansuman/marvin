@@ -29,9 +29,9 @@ global_answers = list()
 @app.route('/home')
 def home():
     ''' Renders the home page '''
-    dir = os.path.join(str(os.getcwd()), "database")
+    directory = os.path.join(str(os.getcwd()), "database")
     session["database_path"] = os.path.join(str(os.getcwd()), "database", "userlog.csv")
-    if "userlog.csv" not in os.listdir(dir):
+    if "userlog.csv" not in os.listdir(directory):
         df = pd.DataFrame(columns=["DATE", "USERNAME", "SUBJECT", "SUBJECT_ID", "TEST_TYPE", "TEST_ID", "SCORE", "RESULT"])
         df.to_csv(session["database_path"], index=False)
     else:
