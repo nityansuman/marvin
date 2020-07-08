@@ -158,6 +158,7 @@ def output():
         # evaluate subjective answer
         for i in range(len(default_ans)):
             # Subjective test
+            subjective_generator = SubjectiveTest(session["filepath"])
             total_score += subjective_generator.evaluate_subjective_answer(default_ans[i], user_ans[i])
         total_score /= 2
         total_score = round(total_score, 3)

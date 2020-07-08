@@ -58,7 +58,11 @@ class SubjectiveTest:
             list -- Contains word tokens out of the string sequence
         """
         # Perform sentence tokenization and word tokenization in a nested fashion
-        return [w for w in nlp.word_tokenize(sent) for sent in nlp.sent_tokenize(sequence)]
+        word_tokens = list()
+        for sent in nlp.sent_tokenize(sequence):
+            for w in nlp.word_tokenize(sent):
+                word_tokens.append(w)
+        return word_tokens
     
     @staticmethod
     def create_vector(answer_tokens, tokens):
