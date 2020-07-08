@@ -1,5 +1,8 @@
 # Automating the Examination System
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d09135d8cce145e797fd14636bd94d95)](https://app.codacy.com/manual/nityansuman/automated-test-app?utm_source=github.com&utm_medium=referral&utm_content=nityansuman/automated-test-app&utm_campaign=Badge_Grade_Dashboard)
+
+
 Conducting examination and answer sheet evaluation are hectic testing tools for assessing
 academic achievement, integration of ideas and ability to recall, but are expensive, resource
 and time consuming to generate question and evaluate response manually. Manual evaluating
