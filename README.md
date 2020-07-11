@@ -18,9 +18,8 @@ assess user responses.
 
 ## Install Prerequisites and Run
 
-![Image](images/info.png)
-
-<!-- # Download/clone the project from github
+```
+# Download/clone the project from github
 $ git clone https://github.com/nityansuman/automated-test-app/.git
 
 # Create a project environment with Anaconda
@@ -39,7 +38,8 @@ $ pip install -r REQUIREMENTS.txt
 $ cd automated-test-app/
 
 # Run
-$ python runserver.py -->
+$ python runserver.py
+```
 
 ## Important Links
 
