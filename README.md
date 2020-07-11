@@ -55,4 +55,4 @@ $ python runserver.py
 
 Drop me a mail or connect with me on [Linkedin](https://linkedin.com/in/kumar-nityan-suman/) .
 
-If you like the work I do, show your appreciation by 'FORK', 'START' and 'SHARE'.
+If you like the work I do, show your appreciation by 'FORK', 'STAR' and 'SHARE'.
