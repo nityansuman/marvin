@@ -20,6 +20,27 @@ assess user responses.
 
 ![Image](images/info.png)
 
+<!-- # Download/clone the project from github
+$ git clone https://github.com/nityansuman/automated-test-app/.git
+
+# Create a project environment with Anaconda
+$ conda create --name envname python
+$ conda activate envname
+
+# Install and set-up required packages
+$ pip install -r REQUIREMENTS.txt
+
+# Download NLTK corpus (If not present already)
+>>> import nltk
+>>> nltk.download("all")
+>>> exit()
+
+# Navigate to the root folder
+$ cd automated-test-app/
+
+# Run
+$ python runserver.py -->
+
 ## Important Links
 
 * [How to install anaconda python distribution ?](https://docs.anaconda.com/anaconda/install/)
