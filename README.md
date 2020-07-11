@@ -16,49 +16,13 @@ assess user responses.
 
 ![Image](images/home.png)
 
-## Prerequisites
-    | Flask 0.12 |
-    | Numpy 0.10 |
-    | Pandas 0.20 |
-    | Textblob 0.10 |
-    | NLTK 3.3 |
-    | Python 3.7 - Anaconda Python Distribution (Recommended)|
+## Install Prerequisites and Run
 
-
-## Install Prerequisites
-
-[How to install anaconda python distribution ?](https://docs.anaconda.com/anaconda/install/)
-
-Setup project environment. Assuming anaconda for python 3 is installed:
-```
-    $ pip install -r REQUIREMENTS.txt
-```
-
-NLTK, Numpy and Pandas comes pre-installed with anaconda python distribution. But any other dependencies will be handeled with the above command.
-
-To donwload NLTK text corpus, initiate the Python 3 environment. Run the following command:
-```
-    >>> import nltk
-    >>> nltk.download("all") # to download nltk corpus
-```
-
-
-## To run the project
-```
-To download the project from github - open a terminal and run the following command:
-$ git clone https://github.com/nityansuman/automated-test-app/.git
-
-Now navigate to the root folder of the project from the same termianl:
-$ cd automated-test-app/
-
-Run the following command to execute the project:
-$ python runserver.py
-```
-
-Once run, it will generate a local url. Copy and paste the url in the web browser. Done!
-
+![Image](images/info.png)
 
 ## Important Links
+
+* [How to install anaconda python distribution ?](https://docs.anaconda.com/anaconda/install/)
 * [Natural Language Processing](https://nltk.org/book/)
 * [Git](https://git-scm.com/)
 * [Github](https://github.com/)
@@ -67,7 +31,6 @@ Once run, it will generate a local url. Copy and paste the url in the web browse
 * [Web Development](https://w3schoo.com/)
 * [Python](https://python.org/)
 * [Anaconda Python Distribution](https://conda.io)
-
 
 Drop me a mail or connect with me on [Linkedin](https://linkedin.com/in/kumar-nityan-suman/) .
 
