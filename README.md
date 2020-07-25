@@ -22,7 +22,7 @@ and web technologies to provide an inexpensive alternative to the current examin
 We implement a model to automatically generate questions with their respective answers and
 assess user responses.
 
-![Homepage](https://raw.githubusercontent.com/nityansuman/marvin/master/src/static/images/main.png)
+![Homepage](https://raw.githubusercontent.com/nityansuman/marvin/master/src/static/images/homepage.png)
 
 ## Install Prerequisites and Run
 
