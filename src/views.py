@@ -16,10 +16,10 @@ import numpy as np
 from datetime import datetime
 from flask import render_template, request, session
 from werkzeug.utils import secure_filename
-from atp import app
-from atp.objective import ObjectiveTest
-from atp.subjective import SubjectiveTest
-from atp.utils import relative_ranking, backup
+from src import app
+from src.objective import ObjectiveTest
+from src.subjective import SubjectiveTest
+from src.utils import relative_ranking, backup
 
 # Placeholders
 global_answers = list()
