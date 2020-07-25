@@ -1,5 +1,8 @@
 # MARVIN - Intelligent Examination System
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1e131fc1944e49ac92cb20c7c1a65771)](https://app.codacy.com/manual/nityansuman/marvin?utm_source=github.com&utm_medium=referral&utm_content=nityansuman/marvin&utm_campaign=Badge_Grade_Settings)
+
+
 
 Conducting examination and answer sheet evaluation are hectic testing tools for assessing
 academic achievement, integration of ideas and ability to recall, but are expensive, resource
