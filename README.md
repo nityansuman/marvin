@@ -1,4 +1,6 @@
 # MARVIN - Intelligent Examination System
+[![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
+
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/1e131fc1944e49ac92cb20c7c1a65771)](https://app.codacy.com/manual/nityansuman/marvin?utm_source=github.com&utm_medium=referral&utm_content=nityansuman/marvin&utm_campaign=Badge_Grade_Settings)
 ![GitHub](https://img.shields.io/github/license/nityansuman/marvin)
