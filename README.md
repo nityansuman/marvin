@@ -1,4 +1,4 @@
-# Automating the Examination System
+# MARVIN - Automated Examination System
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/d09135d8cce145e797fd14636bd94d95)](https://app.codacy.com/manual/nityansuman/automated-test-app?utm_source=github.com&utm_medium=referral&utm_content=nityansuman/automated-test-app&utm_campaign=Badge_Grade_Dashboard)
 
