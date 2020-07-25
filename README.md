@@ -14,7 +14,7 @@ and web technologies to provide an inexpensive alternative to the current examin
 We implement a model to automatically generate questions with their respective answers and
 assess user responses.
 
-![Image](images/home.png)
+![Image](images/main.png)
 
 ## Install Prerequisites and Run
 
