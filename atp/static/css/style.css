@@ -1,6 +1,5 @@
 body {
     background-size: cover;
-    width: 100%;
     font-family: "Roboto";
     background-position: center;
     background-repeat: repeat;
@@ -8,9 +7,9 @@ body {
     font-family: "Roboto";
     background-image: url("../images/header.jpg")
 }
+
 .body2 {
     background-size: cover;
-    width: 100%;
     font-family: "Roboto";
     background-position: center;
     background-repeat: repeat;
@@ -27,7 +26,7 @@ body {
 } 
 .row {
     height: 33.33%;
-    width: 101%;
+    width: 100%;
 }
 .row2 {
     height: 33.33%;
