@@ -1,4 +1,4 @@
-# MARVIN - Automated Examination System
+# MARVIN - Intelligent Examination System
 
 
 Conducting examination and answer sheet evaluation are hectic testing tools for assessing
