@@ -24,28 +24,38 @@ assess user responses.
 
 ![Homepage](https://raw.githubusercontent.com/nityansuman/marvin/master/src/static/images/homepage.png)
 
-## Install Prerequisites and Run
+## Getting started
+
+Download or clone the project from github
 
 ```
-# Download/clone the project from github
-$ git clone https://github.com/nityansuman/marvin/.git
+$ git clone https://github.com/nityansuman/marvin.git
+```
 
-# Create a project environment with Anaconda
+Create a project environment (Anaconda recommended)
+```
 $ conda create --name envname python
 $ conda activate envname
+```
 
-# Install and set-up required packages
+Install prerequisites
+```
 $ pip install -r REQUIREMENTS.txt
 
-# Download NLTK corpus (If not present already)
+# Also download NLTK corpus (If not present already)
+$ python # or python3
+
 >>> import nltk
 >>> nltk.download("all")
->>> exit()
+>>> exit() # after download is complete, exit python.
+```
 
-# Navigate to the root folder
-$ cd marvin/
+Run project server (Flask)
+```
+# Get inside project folder
+$ cd marvin
 
-# Run
+# Execute server file
 $ python runserver.py
 ```
 
