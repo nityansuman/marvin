@@ -49,18 +49,10 @@ $ cd marvin/
 $ python runserver.py
 ```
 
-## Important Links
+**Login Board**
+![Login Board](https://raw.githubusercontent.com/nityansuman/marvin/master/src/static/images/pic2.jpg)
 
-* [How to install anaconda python distribution ?](https://docs.anaconda.com/anaconda/install/)
-* [Natural Language Processing](https://nltk.org/book/)
-* [Git](https://git-scm.com/)
-* [Github](https://github.com/)
-* [NLTK](https://nltk.org/)
-* [Flask](http://flask.pocoo.org/)
-* [Web Development](https://w3schoo.com/)
-* [Python](https://python.org/)
-* [Anaconda Python Distribution](https://conda.io)
-
-Drop me a mail or connect with me on [Linkedin](https://linkedin.com/in/kumar-nityan-suman/) .
+**Result Board**
+![Result Board](https://raw.githubusercontent.com/nityansuman/marvin/master/src/static/images/pic5.png)
 
 If you like the work I do, show your appreciation by 'FORK', 'STAR' and 'SHARE'.
