@@ -1,6 +1,4 @@
 # MARVIN - Intelligent Examination System
-[![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
-
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/1e131fc1944e49ac92cb20c7c1a65771)](https://app.codacy.com/manual/nityansuman/marvin?utm_source=github.com&utm_medium=referral&utm_content=nityansuman/marvin&utm_campaign=Badge_Grade_Settings)
 ![GitHub](https://img.shields.io/github/license/nityansuman/marvin)
@@ -42,20 +40,17 @@ Install prerequisites
 ```
 $ pip install -r REQUIREMENTS.txt
 
-# Also download NLTK corpus (If not present already)
-$ python # or python3
+$ python
 
 >>> import nltk
 >>> nltk.download("all")
->>> exit() # after download is complete, exit python.
+>>> exit() # after download is complete, exit python
 ```
 
-Run project server (Flask)
+Run project
 ```
-# Get inside project folder
 $ cd marvin
 
-# Execute server file
 $ python runserver.py
 ```
 
@@ -65,4 +60,10 @@ $ python runserver.py
 **Result Board**
 ![Result Board](https://raw.githubusercontent.com/nityansuman/marvin/master/src/static/images/pic5.png)
 
+## Support
+
 If you like the work I do, show your appreciation by 'FORK', 'STAR' and 'SHARE'.
+
+Open to all types of collaborations. Feel free to raise a PR.
+
+[![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
