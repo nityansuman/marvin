@@ -8,24 +8,34 @@
 #  of this license document, but changing it is not allowed.
 # ==============================================================================
 
-
 # Import packages
-import os
 import csv
+import logging
+import os
+
 import numpy as np
 import pandas as pd
 
 
-def backup(session):
-    # Process username and subject information
+def backup(session: list) -> bool:
+	"""Method to backup details for the current session.
+
+	Args:
+		session (list): Session metadata container.
+
+	Returns:
+		bool: Status flag indicatig successful backup of session metadata.
+	"""
+    # Process session information
     username = "_".join([x.upper() for x in session["username"].split()])
     subject_name = session["subject_name"].strip().upper()
     subject_id = session["subject_id"].strip()
     test_type = ["Objective" if session["test_id"] == "0" else "Subjective"][0]
     test_id = session["test_id"]
-    # Process timestamp
     timestamp = session["date"]
-    # Construct loggin data
+	status = False
+
+    # Construct login data
     row = [
         timestamp,
         username,
@@ -36,47 +46,46 @@ def backup(session):
         session["score"],
         session["result"]
     ]
-    # Database user information log path
+
+	# Push session metadata to a central repo
     filepath = session["database_path"]
-    file_exists = os.path.isfile(filepath)
-    if file_exists:
-        # If file exists, open file in append mode
+    if os.path.isfile(filepath):
         try:
             with open(filepath, mode="a") as fp:
                 fp_writer = csv.writer(fp)
-                # Backup data
                 fp_writer.writerow(row)
                 status = True
         except Exception as e:
-            print("Exception raised at `utils.__backup`:", e)
+            logging.exception("Exception raised at `backup`.", exc_info=True)
     else:
         print("Database placeholder nott found!")
-        status = False
     return status
 
 
-def relative_ranking(session):
-    """Method to compute relative ranking of user on a particular subject.
-    
-    Arguments:
-        subjectname {str} -- Name of the test subject.
-        type {str} -- Denoting the type of the test taken
-    
-    Returns:
-        int, float, int -- Maximum, Minimum and Average score obtained by the user in a paarticular subject test
-    """
-    max_score = 100.0
-    min_score = 0.0
-    mean_score = "None"
+def relative_ranking(session: list) -> tuple:
+	"""Method to compute relative ranking for a particular user response.
+
+	Args:
+		session (list): Session metadata container.
+
+	Returns:
+		tuple: Tuple with max, min and mean score.
+	"""
+    min_scope, max_score = 0.0, 100.0
+    mean_score = None
+
+	def rounder(value, decimals=2):
+		return np.round(value, decimals=decimals)
+
     try:
         df = pd.read_csv(session["database_path"])
     except Exception as e:
-        print("Exception raised at `utils__relative_ranking`:", e)
+        logging.exception("Exception raised at `relative_ranking`.", exc_info=True)
     else:
         df = df[(df["SUBJECT_ID"] == int(session["subject_id"])) & (df["TEST_ID"] == int(session["test_id"]))]
         if df.shape[0] >= 1:
-            max_score = np.round(df["SCORE"].max(), decimals=2)
-            min_score = np.round(df["SCORE"].min(), decimals=2)
-            mean_score = np.round(df["SCORE"].mean(), decimals=2)
+            max_score = rounder(df["SCORE"].max(), decimals=2)
+            min_score = rounder(df["SCORE"].min(), decimals=2)
+            mean_score = rounder(df["SCORE"].mean(), decimals=2)
     finally:
-        return max_score, min_score, mean_score
+        return (max_score, min_score, mean_score)
