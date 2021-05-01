@@ -36,8 +36,6 @@ $ conda activate envname
 
 Install NLTK prerequisites:
 ```
-$ pip install -r REQUIREMENTS.txt
-
 $ python
 
 >>> import nltk
