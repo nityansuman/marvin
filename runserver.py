@@ -7,8 +7,6 @@
 #  of this license document, but changing it is not allowed.
 # ==============================================================================
 
-
-# Import packages
 import os
 from src import app
 

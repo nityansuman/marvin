@@ -7,8 +7,6 @@
 #  of this license document, but changing it is not allowed.
 # ==============================================================================
 
-
-# Import packages
 from flask import Flask
 
 app = Flask(__name__)

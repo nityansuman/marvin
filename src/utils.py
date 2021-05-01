@@ -8,7 +8,6 @@
 #  of this license document, but changing it is not allowed.
 # ==============================================================================
 
-# Import packages
 import csv
 import logging
 import os
