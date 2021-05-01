@@ -1,4 +1,4 @@
-# MARVIN - Intelligent Examination System
+# MARVIN - AI Examination System
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/1e131fc1944e49ac92cb20c7c1a65771)](https://app.codacy.com/manual/nityansuman/marvin?utm_source=github.com&utm_medium=referral&utm_content=nityansuman/marvin&utm_campaign=Badge_Grade_Settings)
 ![GitHub](https://img.shields.io/github/license/nityansuman/marvin)
@@ -6,7 +6,6 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/nityansuman/marvin)
 ![GitHub language count](https://img.shields.io/github/languages/count/nityansuman/marvin)
 
-![Maintenance](https://img.shields.io/maintenance/yes/2020)
 ![GitHub last commit](https://img.shields.io/github/last-commit/nityansuman/marvin)
 
 Conducting examination and answer sheet evaluation are hectic testing tools for assessing
@@ -67,3 +66,4 @@ If you like the work I do, show your appreciation by 'FORK', 'STAR' and 'SHARE'.
 Open to all types of collaboration. Feel free to raise a PR.
 
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
+[![Forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
