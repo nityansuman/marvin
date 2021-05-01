@@ -21,21 +21,20 @@ assess user responses.
 
 ![Homepage](https://raw.githubusercontent.com/nityansuman/marvin/master/src/static/images/homepage.png)
 
-## Getting started
+## Getting Started
 
-Download or clone the project from github
-
+Download or clone the project from github:
 ```
 $ git clone https://github.com/nityansuman/marvin.git
 ```
 
-Create a project environment (Anaconda recommended)
+Create a project environment (Anaconda recommended):
 ```
 $ conda create --name envname python
 $ conda activate envname
 ```
 
-Install prerequisites
+Install NLTK prerequisites:
 ```
 $ pip install -r REQUIREMENTS.txt
 
@@ -46,10 +45,9 @@ $ python
 >>> exit() # after download is complete, exit python
 ```
 
-Run project
+Run project:
 ```
 $ cd marvin
-
 $ python runserver.py
 ```
 
