@@ -7,10 +7,9 @@
 #  of this license document, but changing it is not allowed.
 # ==============================================================================
 
-
 # Import packages
-import numpy as np
 import nltk as nlp
+import numpy as np
 
 
 class SubjectiveTest:
@@ -19,7 +18,7 @@ class SubjectiveTest:
 
     def __init__(self, filepath):
         """Class constructor.
-        
+
         Arguments:
             filepath {str} -- String representing the filepath for the subject corpus.
         """
@@ -42,14 +41,14 @@ class SubjectiveTest:
                 self.summary = fp.read()
         except FileNotFoundError as e:
             print(e)
-    
+
     @staticmethod
     def word_tokenizer(sequence):
         """Tokenize string sequence on word level
-        
+
         Arguments:
             sequence {str} -- String sequence
-        
+
         Returns:
             list -- Contains word tokens out of the string sequence
         """
@@ -59,37 +58,37 @@ class SubjectiveTest:
             for w in nlp.word_tokenize(sent):
                 word_tokens.append(w)
         return word_tokens
-    
+
     @staticmethod
     def create_vector(answer_tokens, tokens):
         """Create a one-hot encoded vector for the  answer_tokens` on the basis of `tokens`
-        
+
         Arguments:
             answer_tokens {list} -- Tokenized user answer
             tokens {list} -- Tokenized actual answer corpus
-        
+
         Returns:
             numpy.array -- A one-hot encoded vector of the answer
         """
         return np.array([1 if tok in answer_tokens else 0 for tok in tokens])
-    
+
     @staticmethod
     def cosine_similarity_score(vector1, vector2):
         """Cmpute the euqlidean distance between teo vectors
-        
+
         Arguments:
             vector1 {numpy.array} -- Actual answer vector
             vector2 {numpy.array} -- User answer vector
-        
+
         Returns:
             float -- Distance between two vectors
         """
         def vector_value(vector):
             """Compute the value of a given vector
-            
+
             Arguments:
                 vector {numpy.array} -- Vector array
-            
+
             Returns:
                 float -- Value of the n-dimensional vector
             """
@@ -100,13 +99,13 @@ class SubjectiveTest:
         # Compute euclidean distance
         v1_v2 = np.dot(vector1, vector2)
         return (v1_v2 / (v1 * v2)) * 100
-    
+
     def generate_test(self, num_of_questions=2):
         """Method to generate subjective test
 
         Arguments:
             num_of_questions {int} -- Maximum number of questions to generated
-        
+
         Returns:
             list, list -- Generated `Questions` and `Answers` respectively
         """
@@ -156,14 +155,14 @@ class SubjectiveTest:
             else:
                 continue
         return que, ans
-    
+
     def evaluate_subjective_answer(self, original_answer, user_answer):
         """Evaluate the subjective answer given by the user.
-        
+
         Arguments:
             original_answer {str} -- A string representing the original asnwer.
             user_answer {str} -- A string representing the answer given by the user.
-        
+
         Returns:
             float -- A floating point value indicating the similarity/correctness score of the user answer based on the original asnwer.
         """

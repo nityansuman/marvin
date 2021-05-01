@@ -10,16 +10,18 @@
 
 # Import packages
 import os
-import flask
-import pandas as pd
-import numpy as np
 from datetime import datetime
+
+import flask
+import numpy as np
+import pandas as pd
 from flask import render_template, request, session
 from werkzeug.utils import secure_filename
+
 from src import app
 from src.objective import ObjectiveTest
 from src.subjective import SubjectiveTest
-from src.utils import relative_ranking, backup
+from src.utils import backup, relative_ranking
 
 # Placeholders
 global_answers = list()
@@ -85,7 +87,7 @@ def generate_test():
         question_list, answer_list = objective_generator.generate_test()
         for ans in answer_list:
             global_answers.append(ans)
-        
+
         return render_template(
             "objective_test.html",
             username=session["username"],
@@ -100,7 +102,7 @@ def generate_test():
         question_list, answer_list = subjective_generator.generate_test(num_of_questions=2)
         for ans in answer_list:
             global_answers.append(ans)
-        
+
         return render_template(
             "subjective_test.html",
             username=session["username"],
@@ -128,11 +130,11 @@ def output():
         user_ans.append(str(request.form["answer2"]).strip().upper())
     else:
         print("Done!")
-    
+
     # Process answers
     for x in global_answers:
         default_ans.append(str(x).strip().upper())
-    
+
     # Evaluate the user repsonse
     total_score = 0
     status = None
