@@ -7,8 +7,7 @@
 #  of this license document, but changing it is not allowed.
 # ==============================================================================
 
-
-# Import packages
+import logging
 import re
 
 import nltk
@@ -17,181 +16,195 @@ from nltk.corpus import wordnet as wn
 
 
 class ObjectiveTest:
-    """Class abstraction for objective test generation module
-    """
+	"""Class abstraction for objective test generation module.
+	"""
 
-    def __init__(self, filepath):
-        """Class constructor
+	def __init__(self, filepath: str):
+		"""Class constructor.
 
-        Arguments:
-            filepath {str} -- Absolute path to the corpus file
-        """
-        try:
-            with open(filepath, mode="r") as fp:
-                self.summary = fp.read()
-        except FileNotFoundError as e:
-            print("Warning raised at `ObjectiveTest.__init__`", e)
+		Args:
+			filepath (str): Absolute path to the corpus file.
+				The corpus is used to generate test.
+		"""
+		# Load subject corpus
+		try:
+			with open(filepath, mode="r") as fp:
+				self.summary = fp.read()
+		except FileNotFoundError:
+			logging.exception("Corpus file not found.", exc_info=True)
+		else:
+			logging.info("Corpus file load successful.")
 
-    def get_trivial_sentences(self):
-        """Method to dentify sentences with potential to create objective questions
+	def generate_test(self, num_questions: int = 3) -> list, list:
+		"""Method to generate an objective test.
 
-        Returns:
-            list -- Sentences with potential to create objective questions
-        """
-        # Sentence tokenization
-        sentences = nltk.sent_tokenize(self.summary)
-        trivial_sentences = list()
-        # Identify trivial sentences
-        for sent in sentences:
-            trivial = self.identify_trivial_sentences(sent)
-            if trivial:
-                trivial_sentences.append(trivial)
-            else:
-                continue
-        return trivial_sentences
+		Args:
+			num_questions (int, optional): Number of questions in a test.
 
-    def identify_trivial_sentences(self, sentence):
-        """Method to evaluate if a given sentence has the potential to generate an objective question.
+		Returns:
+			list, list: Questions and answer options respectively.
+		"""
+		# Identify potential question sets
+		question_sets = self.get_question_sets()
 
-        Arguments:
-            sentence {str} -- String sequence generated from a `sentence_tokenizer`
+		# Identify potential question answers
+		question_answers = list()
+		for question_set in question_sets:
+			if question_set["Key"] > 3:
+				question_answers.append(question_set)
 
-        Returns:
-            dict -- Question formed along with the correct answer in case of potential sentence
-                    else return `None`
-        """
-        # If sentence starts with an adverb or is less than 4 words long probably not the best fit
-        tags = nltk.pos_tag(sentence)
-        if tags[0][1] == "RB" or len(nltk.word_tokenize(sentence)) < 4:
-            return None
+		# Create objective test set
+		questions, answers = list(), list()
+		while len(questions) < num_questions:
+			rand_num = np.random.randint(0, len(question_answers))
+			if question_answers[rand_num]["Question"] not in questions:
+				questions.append(question_answers[rand_num]["Question"])
+				answers.append(question_answers[rand_num]["Answer"])
+		return questions, answers
 
-        # Extract noun phrases from the sentence
-        noun_phrases = list()
-        grammer = r"""
-            CHUNK: {<NN>+<IN|DT>*<NN>+}
-                {<NN>+<IN|DT>*<NNP>+}
-                {<NNP>+<NNS>*}
-            """
-        chunker = nltk.RegexpParser(grammer)
-        tokens = nltk.word_tokenize(sentence)
-        pos_tokens = nltk.tag.pos_tag(tokens)
-        tree = chunker.parse(pos_tokens)
+	def get_question_sets(self) -> list:
+		"""Method to dentify sentences with potential objective questions.
 
-        # Select phrase
-        for subtree in tree.subtrees():
-            if subtree.label() == "CHUNK":
-                temp = ""
-                for sub in subtree:
-                    temp += sub[0]
-                    temp += " "
-                temp = temp.strip()
-                noun_phrases.append(temp)
+		Returns:
+			list: Sentences with potential objective questions.
+		"""
+		# Tokenize corpus into sentences
+		try:
+			sentences = nltk.sent_tokenize(self.summary)
+		except Exception:
+			logging.exception("Sentence tokenization failed.", exc_info=True)
+		else:
+			logging.info("Sentence tokenization successful.")
 
-        # Replace nouns
-        replace_nouns = []
-        for word, _ in tags:
-            for phrase in noun_phrases:
-                if phrase[0] == '\'':
-                    # If it starts with an apostrophe, ignore it
-                    # (this is a weird error that should probably be handled elsewhere)
-                    break
-                if word in phrase:
-                    # Blank out the last two words in this phrase
-                    [replace_nouns.append(phrase_word) for phrase_word in phrase.split()[-2:]]
-                    break
-            # If we couldn't find the word in any phrases
-            if len(replace_nouns) == 0:
-                replace_nouns.append(word)
-            break
+		# Identify potential question sets
+		# Each question set consists:
+		# 	Question: Objective question.
+		# 	Answer: Actual asnwer.
+		#	Key: Other options.
+		question_sets = list()
+		for sent in sentences:
+			question_set = self.identify_potential_questions(sent)
+			if question_set is not None:
+				question_sets.append(question_set)
+		return question_sets
 
-        if len(replace_nouns) == 0:
-            # Return none if we found no words to replace
-            return None
+	def identify_potential_questions(self, sentence: str) -> dict:
+		"""Method to identiyf potential question sets.
 
-        val = 99
-        for i in replace_nouns:
-            if len(i) < val:
-                val = len(i)
-            else:
-                continue
+		Args:
+			sentence (str): Tokenized sequence from corpus.
 
-        trivial = {
-            "Answer": " ".join(replace_nouns),
-            "Key": val
-        }
+		Returns:
+			dict: Question formed along with the correct answer in case of
+				potential sentence else return None.
+		"""
+		# POS tag sequences
+		tags = nltk.pos_tag(sentence)
+		if tags[0][1] == "RB" or len(nltk.word_tokenize(sentence)) < 4:
+			return None
 
-        if len(replace_nouns) == 1:
-            # If we're only replacing one word, use WordNet to find similar words
-            trivial["Similar"] = self.answer_options(replace_nouns[0])
-        else:
-            # If we're replacing a phrase, don't bother - it's too unlikely to make sense
-            trivial["Similar"] = []
+		# Create regex grammer
+		noun_phrases = list()
+		grammer = r"""
+			CHUNK: {<NN>+<IN|DT>*<NN>+}
+				{<NN>+<IN|DT>*<NNP>+}
+				{<NNP>+<NNS>*}
+			"""
 
-        # Blank out our replace words (only the first occurrence of the word in the sentence)
-        replace_phrase = " ".join(replace_nouns)
-        blanks_phrase = ("__________" * len(replace_nouns)).strip()
-        # Compile regular expresession
-        expression = re.compile(re.escape(replace_phrase), re.IGNORECASE)
-        sentence = expression.sub(blanks_phrase, str(sentence), count=1)
-        trivial["Question"] = sentence
-        return trivial
+		# Create parser tree
+		chunker = nltk.RegexpParser(grammer)
+		tokens = nltk.word_tokenize(sentence)
+		pos_tokens = nltk.tag.pos_tag(tokens)
+		tree = chunker.parse(pos_tokens)
 
-    @staticmethod
-    def answer_options(word):
-        """Method to identify objective answer options
+		# Parse tree to identify tokens
+		for subtree in tree.subtrees():
+			if subtree.label() == "CHUNK":
+				temp = ""
+				for sub in subtree:
+					temp += sub[0]
+					temp += " "
+				temp = temp.strip()
+				noun_phrases.append(temp)
 
-        Arguments:
-            word {str} -- Actual answer to the question which is to be used for generating other deceiving options
+		# Handle nouns
+		replace_nouns = []
+		for word, _ in tags:
+			for phrase in noun_phrases:
+				if phrase[0] == '\'':
+					# If it starts with an apostrophe, ignore it
+					# (this is a weird error that should probably be handled elsewhere)
+					break
+				if word in phrase:
+					# Blank out the last two words in this phrase
+					[replace_nouns.append(phrase_word) for phrase_word in phrase.split()[-2:]]
+					break
+			# If we couldn't find the word in any phrases
+			if len(replace_nouns) == 0:
+				replace_nouns.append(word)
+			break
 
-        Returns:
-            list -- Other answer options
-        """
-        # In the absence of a better method, take the first synset
-        synsets = wn.synsets(word, pos="n")
+		if len(replace_nouns) == 0:
+			return None
 
-        # If there aren't any synsets, return an empty list
-        if len(synsets) == 0:
-            return []
-        else:
-            synset = synsets[0]
+		val = 99
+		for i in replace_nouns:
+			if len(i) < val:
+				val = len(i)
+			else:
+				continue
 
-        # Get the hypernym for this synset (again, take the first)
-        hypernym = synset.hypernyms()[0]
-        # Get some hyponyms from this hypernym
-        hyponyms = hypernym.hyponyms()
-        # Take the name of the first lemma for the first 8 hyponyms
-        similar_words = []
-        for hyponym in hyponyms:
-            similar_word = hyponym.lemmas()[0].name().replace("_", " ")
-            if similar_word != word:
-                similar_words.append(similar_word)
-            if len(similar_words) == 8:
-                break
-        return similar_words
+		trivial = {
+			"Answer": " ".join(replace_nouns),
+			"Key": val
+		}
 
-    def generate_test(self, num_of_questions=3):
-        """Method to generate an objective test i.e., a set of questions and required options for answer.
+		if len(replace_nouns) == 1:
+			# If we're only replacing one word, use WordNet to find similar words
+			trivial["Similar"] = self.answer_options(replace_nouns[0])
+		else:
+			# If we're replacing a phrase, don't bother - it's too unlikely to make sense
+			trivial["Similar"] = []
 
-        Arguments:
-            num_of_questions {int} -- Integer denoting number of questions to set in the test.
+		replace_phrase = " ".join(replace_nouns)
+		blanks_phrase = ("__________" * len(replace_nouns)).strip()
+		expression = re.compile(re.escape(replace_phrase), re.IGNORECASE)
+		sentence = expression.sub(blanks_phrase, str(sentence), count=1)
+		trivial["Question"] = sentence
+		return trivial
 
-        Returns:
-            list, list -- A pair of lists containing questions and answer options respectively.
-        """
-        trivial_pair = self.get_trivial_sentences()
-        question_answer = list()
-        for que_ans_dict in trivial_pair:
-            if que_ans_dict["Key"] > 3:
-                question_answer.append(que_ans_dict)
-            else:
-                continue
-        question = list()
-        answer = list()
-        while len(question) < num_of_questions:
-            rand_num = np.random.randint(0, len(question_answer))
-            if question_answer[rand_num]["Question"] not in question:
-                question.append(question_answer[rand_num]["Question"])
-                answer.append(question_answer[rand_num]["Answer"])
-            else:
-                continue
-        return question, answer
+	@staticmethod
+	def answer_options(word: str) -> list:
+		"""Method to identify incorrect answer options.
+
+		Arguments:
+			word (str): Actual answer to the question which is to be used
+				for generating other deceiving options.
+
+		Returns:
+			list: Answer options.
+		"""
+		# In the absence of a better method, take the first synset
+		synsets = wn.synsets(word, pos="n")
+
+		# If there aren't any synsets, return an empty list
+		if len(synsets) == 0:
+			return []
+		else:
+			synset = synsets[0]
+
+		# Get the hypernym for this synset (again, take the first)
+		hypernym = synset.hypernyms()[0]
+
+		# Get some hyponyms from this hypernym
+		hyponyms = hypernym.hyponyms()
+
+		# Take the name of the first lemma for the first 8 hyponyms
+		similar_words = []
+		for hyponym in hyponyms:
+			similar_word = hyponym.lemmas()[0].name().replace("_", " ")
+			if similar_word != word:
+				similar_words.append(similar_word)
+			if len(similar_words) == 8:
+				break
+		return similar_words
