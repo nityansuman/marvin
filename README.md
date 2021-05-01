@@ -63,7 +63,5 @@ $ python runserver.py
 
 If you like the work I do, show your appreciation by 'FORK', 'STAR' and 'SHARE'.
 
-Open to all types of collaboration. Feel free to raise a PR.
-
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
 [![Forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
