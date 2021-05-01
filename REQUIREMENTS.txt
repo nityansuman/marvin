@@ -1,5 +1,9 @@
-flask>=1.1
-nltk>=3.5
-numpy>=1.20
-pandas>=1.0
-textblob>=0.10
+# Packages in environment (Python 3.8.5):
+#
+# Name                    Version                   Build
+flask                     1.1.2                      py_0
+nltk                      3.5                        py_0
+numpy                     1.19.2           py38h54aff64_0
+pandas                    1.1.3            py38he6710b0_0
+scikit-learn              0.23.2           py38h0573a6f_0
+textblob                  0.15.3                   pypi_0
