@@ -10,6 +10,7 @@
 
 import logging
 import re
+from typing import Tuple
 
 import nltk
 import numpy as np
@@ -33,7 +34,7 @@ class ObjectiveTest:
 		except FileNotFoundError:
 			logging.exception("Corpus file not found.", exc_info=True)
 
-	def generate_test(self, num_questions: int = 3) -> list, list:
+	def generate_test(self, num_questions: int = 3) -> Tuple[list, list]:
 		"""Method to generate an objective test.
 
 		Args:
@@ -41,7 +42,7 @@ class ObjectiveTest:
 				Defaults to 3.
 
 		Returns:
-			list, list: Questions and answer options respectively.
+			Tuple[list, list]: Questions and answer options respectively.
 		"""
 		# Identify potential question sets
 		question_sets = self.get_question_sets()

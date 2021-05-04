@@ -9,6 +9,7 @@
 # ==============================================================================
 
 import logging
+from typing import Tuple
 
 import nltk as nlp
 import numpy as np
@@ -95,7 +96,7 @@ class SubjectiveTest:
 		v1_v2 = np.dot(vector1, vector2)
 		return (v1_v2 / (v1 * v2)) * 100
 
-	def generate_test(self, num_questions: int = 2) -> list, list:
+	def generate_test(self, num_questions: int = 2) -> Tuple[list, list]:
 		"""Method to generate subjective test.
 
 		Args:
@@ -103,10 +104,10 @@ class SubjectiveTest:
 				to be generated. Defaults to 2.
 
 		Returns:
-			list, list: Generated `Questions` and `Answers` respectively
+			Tuple[list, list]: Generated `Questions` and `Answers` respectively
 		"""
 		try:
-			sentences = nltk.sent_tokenize(self.summary)
+			sentences = nlp.sent_tokenize(self.summary)
 		except Exception:
 			logging.exception("Sentence tokenization failed.", exc_info=True)
 
