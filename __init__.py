@@ -1,4 +1,5 @@
-# Copyright 2020 The `Kumar Nityan Suman` (https://github.com/nityansuman/). All Rights Reserved.
+# Copyright 2020 The `Kumar Nityan Suman` (https://github.com/nityansuman/).
+# All Rights Reserved.
 #
 #                     GNU GENERAL PUBLIC LICENSE
 #                        Version 3, 29 June 2007
