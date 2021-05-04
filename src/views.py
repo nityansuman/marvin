@@ -100,7 +100,7 @@ def generate_test():
     elif session["test_id"] == "1":
         # Generate subjective test
         subjective_generator = SubjectiveTest(session["filepath"])
-        question_list, answer_list = subjective_generator.generate_test(num_of_questions=2)
+        question_list, answer_list = subjective_generator.generate_test(num_questions=2)
         for ans in answer_list:
             global_answers.append(ans)
 
