@@ -23,8 +23,7 @@ class ObjectiveTest:
 		"""Class constructor.
 
 		Args:
-			filepath (str): Absolute path to the corpus file.
-				The corpus is used to generate test.
+			filepath (str): filepath (str): Absolute filepath to the subject corpus.
 		"""
 		# Load subject corpus
 		try:
@@ -32,14 +31,13 @@ class ObjectiveTest:
 				self.summary = fp.read()
 		except FileNotFoundError:
 			logging.exception("Corpus file not found.", exc_info=True)
-		else:
-			logging.info("Corpus file load successful.")
 
 	def generate_test(self, num_questions: int = 3) -> list, list:
 		"""Method to generate an objective test.
 
 		Args:
 			num_questions (int, optional): Number of questions in a test.
+				Defaults to 3.
 
 		Returns:
 			list, list: Questions and answer options respectively.
@@ -73,8 +71,6 @@ class ObjectiveTest:
 			sentences = nltk.sent_tokenize(self.summary)
 		except Exception:
 			logging.exception("Sentence tokenization failed.", exc_info=True)
-		else:
-			logging.info("Sentence tokenization successful.")
 
 		# Identify potential question sets
 		# Each question set consists:
@@ -99,20 +95,23 @@ class ObjectiveTest:
 				potential sentence else return None.
 		"""
 		# POS tag sequences
-		tags = nltk.pos_tag(sentence)
-		if tags[0][1] == "RB" or len(nltk.word_tokenize(sentence)) < 4:
-			return None
+		try:
+			tags = nltk.pos_tag(sentence)
+			if tags[0][1] == "RB" or len(nltk.word_tokenize(sentence)) < 4:
+				return None
+		except Exception:
+			logging.exception("POS tagging failed.", exc_info=True)
 
-		# Create regex grammer
+		# Define regex grammar to chunk keywords
 		noun_phrases = list()
-		grammer = r"""
+		grammar = r"""
 			CHUNK: {<NN>+<IN|DT>*<NN>+}
 				{<NN>+<IN|DT>*<NNP>+}
 				{<NNP>+<NNS>*}
 			"""
 
 		# Create parser tree
-		chunker = nltk.RegexpParser(grammer)
+		chunker = nltk.RegexpParser(grammar)
 		tokens = nltk.word_tokenize(sentence)
 		pos_tokens = nltk.tag.pos_tag(tokens)
 		tree = chunker.parse(pos_tokens)
@@ -177,7 +176,7 @@ class ObjectiveTest:
 	def answer_options(word: str) -> list:
 		"""Method to identify incorrect answer options.
 
-		Arguments:
+		Args:
 			word (str): Actual answer to the question which is to be used
 				for generating other deceiving options.
 
@@ -185,7 +184,10 @@ class ObjectiveTest:
 			list: Answer options.
 		"""
 		# In the absence of a better method, take the first synset
-		synsets = wn.synsets(word, pos="n")
+		try:
+			synsets = wn.synsets(word, pos="n")
+		except Exception:
+			logging.exception("Synsets creation failed.", exc_info=True)
 
 		# If there aren't any synsets, return an empty list
 		if len(synsets) == 0:
