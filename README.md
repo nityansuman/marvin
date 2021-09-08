@@ -1,11 +1,10 @@
 # MARVIN - AI Examination System
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1e131fc1944e49ac92cb20c7c1a65771)](https://app.codacy.com/manual/nityansuman/marvin?utm_source=github.com&utm_medium=referral&utm_content=nityansuman/marvin&utm_campaign=Badge_Grade_Settings)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/aed6e37dceb94654949932334c47d6ff)](https://www.codacy.com/gh/nityansuman/marvin/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nityansuman/marvin&amp;utm_campaign=Badge_Grade)
 ![GitHub](https://img.shields.io/github/license/nityansuman/marvin)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/nityansuman/marvin)
 ![GitHub repo size](https://img.shields.io/github/repo-size/nityansuman/marvin)
 ![GitHub language count](https://img.shields.io/github/languages/count/nityansuman/marvin)
-
 ![GitHub last commit](https://img.shields.io/github/last-commit/nityansuman/marvin)
 
 Conducting examination and answer sheet evaluation are hectic testing tools for assessing
