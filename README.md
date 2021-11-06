@@ -1,6 +1,5 @@
 # MARVIN - AI Examination System
 
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/aed6e37dceb94654949932334c47d6ff)](https://www.codacy.com/gh/nityansuman/marvin/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nityansuman/marvin&amp;utm_campaign=Badge_Grade)
 ![GitHub](https://img.shields.io/github/license/nityansuman/marvin)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/nityansuman/marvin)
 ![GitHub repo size](https://img.shields.io/github/repo-size/nityansuman/marvin)
