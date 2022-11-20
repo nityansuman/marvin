@@ -1,11 +1,5 @@
 # MARVIN - AI Examination System
 
-![GitHub](https://img.shields.io/github/license/nityansuman/marvin)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/nityansuman/marvin)
-![GitHub repo size](https://img.shields.io/github/repo-size/nityansuman/marvin)
-![GitHub language count](https://img.shields.io/github/languages/count/nityansuman/marvin)
-![GitHub last commit](https://img.shields.io/github/last-commit/nityansuman/marvin)
-
 Conducting examination and answer sheet evaluation are hectic testing tools for assessing
 academic achievement, integration of ideas and ability to recall, but are expensive, resource
 and time consuming to generate question and evaluate response manually. Manual evaluating
